@@ -3,10 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Page1 from './Pages/Page1'
-import Page2 from './Pages/Page1'
-import Page3 from './Pages/Page1'
-import Page4 from './Pages/Page1'
-import Page5 from './Pages/Page1'
+import Page2 from './Pages/Page2'
+import Page3 from './Pages/Page3'
+import Page4 from './Pages/Page4'
+import Page5 from './Pages/Page5'
 
 // Create the stack navigator
 const Stack = createStackNavigator();
@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Page1">
+      <Stack.Navigator initialRouteName="Page1" screenOptions={{headerShown:false}}>
         <Stack.Screen name="Page1" component={Page1} />
         <Stack.Screen name="Page2" component={Page2} />
         <Stack.Screen name="Page3" component={Page3} />
