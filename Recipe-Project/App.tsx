@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'react-native';
 
+
 import Page1 from './Pages/Page1'
 import Page2 from './Pages/Page2'
 import Page3 from './Pages/Page3'
