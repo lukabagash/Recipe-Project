@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     },
 
     spacerP1: {
-        flex: 0.95, // This will take up 75% of the screen height
+        flex: 0.90, // This will take up 90 % of the screen height
     },
     
     buttonContainerP1: {
@@ -34,5 +34,27 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 15,
         textAlign: 'center',
-    }
+    },
+
+    titleTextP1: {
+        fontSize: 24, // Reduced font size for the title
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 8, // Slightly reduced space between the title and the description
+        color: '#2C3E50', // Darker shade of blue for a professional look
+        textShadowColor: 'rgba(0, 0, 0, 0.1)', // Subtle text shadow for depth
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
+    },
+    
+    descriptionTextP1: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginBottom: 18,
+        marginLeft: '15%',  // 15% space from the left
+        marginRight: '15%', // 15% space from the right
+        color: '#34495E',   // Slightly darker shade for the description
+    },
+    
+    
 });

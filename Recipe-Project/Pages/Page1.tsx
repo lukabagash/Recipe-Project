@@ -12,6 +12,8 @@ const Page1: React.FC<Page1Props> = ({navigation}) => {
   return (
     <View style={styles.deafultPage}>
       <View style={styles.spacerP1}></View>
+      <Text style={styles.titleTextP1}>Cook Up!</Text>
+      <Text style={styles.descriptionTextP1}>3000+ easy and delicious recipes from best chefs around the world.</Text>
       <View style={styles.buttonContainerP1}>
         <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page2')}>
           <Text style={styles.buttonTextP1}>Find Recipes</Text>
