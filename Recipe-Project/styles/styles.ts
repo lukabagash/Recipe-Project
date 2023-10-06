@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     },
 
     spacerP1: {
-        flex: 0.95, // This will take up 75% of the screen height
+        flex: 0.90, // This will take up 95% of the screen height
     },
     
     buttonContainerP1: {
