@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'react-native';
 
 import Page1 from './Pages/Page1'
 import Page2 from './Pages/Page2'
@@ -14,6 +15,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
+      <StatusBar backgroundColor="transparent" barStyle="dark-content" />
       <Stack.Navigator initialRouteName="Page1" screenOptions={{headerShown:false}}>
         <Stack.Screen name="Page1" component={Page1} />
         <Stack.Screen name="Page2" component={Page2} />
