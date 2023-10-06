@@ -3,32 +3,36 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     deafultPage: {
         flex: 1, 
-        justifyContent: 'center', 
+        justifyContent: 'flex-start', 
         alignItems: 'center' 
     },
+
+    spacerP1: {
+        flex: 0.95, // This will take up 75% of the screen height
+    },
+    
     buttonContainerP1: {
-        flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: '150%',
-      },
-      
-      buttonP1: {
-        backgroundColor: '#2C3E50', // Darker shade of blue
-        paddingVertical: 17, // Increased padding for bigger button
-        paddingHorizontal: 30, // Increased padding for bigger button
-        borderRadius: 15, // Slightly rounded corners
-        elevation: 4, // for Android shadow
-        shadowColor: '#000', // for iOS shadow
+        width: '100%', // Ensures the container takes the full width
+    },
+
+    buttonP1: {
+        backgroundColor: '#2C3E50',
+        paddingVertical: 17,
+        paddingHorizontal: 30,
+        borderRadius: 15,
+        elevation: 4,
+        shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
     },
       
     buttonTextP1: {
-        color: '#ECF0F1', // Light gray for better contrast against the darker button
+        color: '#ECF0F1',
         fontWeight: 'bold',
-        fontSize: 15, // Slightly bigger font size
+        fontSize: 15,
         textAlign: 'center',
     }
 });

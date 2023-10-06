@@ -11,6 +11,7 @@ interface Page1Props {
 const Page1: React.FC<Page1Props> = ({navigation}) => {
   return (
     <View style={styles.deafultPage}>
+      <View style={styles.spacerP1}></View>
       <View style={styles.buttonContainerP1}>
         <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page2')}>
           <Text style={styles.buttonTextP1}>Find Recipes</Text>
