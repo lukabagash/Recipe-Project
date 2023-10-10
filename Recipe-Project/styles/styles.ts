@@ -3,12 +3,16 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     deafultPage: {
         flex: 1, 
-        justifyContent: 'flex-start', 
+        justifyContent: 'center', 
         alignItems: 'center' 
     },
 
     spacerP1: {
-        flex: 0.80, // This will take up 90 % of the screen height
+        flex: 0.30, // This will take up 90% of the screen height
+    },
+
+    spacerP2: {
+        flex: 0.25, // This will take up 90% of the screen height
     },
     
     buttonContainerP1: {

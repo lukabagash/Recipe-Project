@@ -11,7 +11,16 @@ interface Page1Props {
 const Page1: React.FC<Page1Props> = ({navigation}) => {
   return (
     <View style={styles.deafultPage}>
-      <Image source={require('../assets/recipe5.png')} style={{ width: 300, height: 300,position: 'relative', top: 150}} />
+      <View style={styles.spacerP2}></View>
+      <Image source={require('../assets/recipe5.png')} style={{ width: 300, height: 300,position: 'relative'}} />
+      {/* <View style={{ 
+        width: 350, 
+        height: 1000, 
+        top: -250,
+        borderWidth: 2, 
+        borderColor: 'grey', 
+        borderRadius: 10 
+      }} /> */}
       <View style={styles.spacerP1}></View>
       <Text style={styles.titleTextP1}>Cook Up!</Text>
       <Text style={styles.descriptionTextP1}>3000+ easy and delicious recipes from best chefs around the world.</Text>
