@@ -13,7 +13,6 @@ const Page1: React.FC<Page1Props> = ({navigation}) => {
     <View style={styles.deafultPage}>
       <View style={styles.spacerP2}></View>
       <Image source={require('../assets/recipe.png')} style={{ width: 400, height: 400,position: 'relative'}} />
-      <Image source={require('../assets/recipe5.png')} style={{ width: 300, height: 300,position: 'relative'}} />
       <View style={styles.spacerP1}></View>
       <Text style={styles.titleTextP1}>Cook Up!</Text>
       <Text style={styles.descriptionTextP1}>3000+ easy and delicious recipes from best chefs around the world.</Text>
