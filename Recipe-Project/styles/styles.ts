@@ -72,14 +72,45 @@ export const styles = StyleSheet.create({
       alignSelf: 'flex-start',
     },
 
-    searchInput: {
-      height: 40,
-      borderColor: 'gray',
-      borderWidth: 1,
-      paddingLeft: 10,
-      margin: 10,
-      borderRadius: 5,
-      width: '80%',
+    searchContainer: {
+        width: '100%',
+        alignItems: 'center',
+        marginTop: 10,
     },
+
+    searchInput: {
+        height: 45,
+        borderColor: '#E0E0E0',
+        borderWidth: 1,
+        paddingLeft: 15,
+        borderRadius: 22.5,
+        width: '90%',
+        backgroundColor: '#F5F5F5',
+        fontSize: 16,
+    },
+
+    flatListContent: {
+        paddingLeft: '7%',
+    },
+
+    listItem: {
+        paddingVertical: 12,
+        paddingHorizontal: 15,
+        fontSize: 16,
+        borderWidth: 1,
+        borderColor: '#E0E0E0',
+        borderRadius: 15,
+        marginVertical: 5,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+        width: '92%',
+    },
+    
       
 });

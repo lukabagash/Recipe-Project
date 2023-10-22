@@ -33,20 +33,23 @@ const Page2: React.FC<Page2Props> = () => {
   };
 
   return (
-    <View style={styles.deafultPage}>
+    <View>
       <View style={styles.headerContainer}>
         <HeaderBackButton onPress={() => navigation.goBack()} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search Ingredients..."
-          onChangeText={handleSearch}
-          value={searchQuery}
-        />
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search Ingredients..."
+            onChangeText={handleSearch}
+            value={searchQuery}
+          />
+        </View>
       </View>
       <FlatList
+        contentContainerStyle={styles.flatListContent}
         data={autocompleteResults}
         keyExtractor={(item) => item}
-        renderItem={({ item }) => <Text>{item}</Text>}
+        renderItem={({ item }) => <Text style={styles.listItem}>{item}</Text>}
       />
     </View>
   );
