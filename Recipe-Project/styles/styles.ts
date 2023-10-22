@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
     deafultPage: {
         flex: 1, 
         justifyContent: 'center', 
-        alignItems: 'center' 
+        alignItems: 'center' ,
+        
     },
 
     spacerP1: {
@@ -59,6 +60,26 @@ export const styles = StyleSheet.create({
         marginRight: '15%', // 15% space from the right
         color: '#34495E',   // Slightly darker shade for the description
     },
-    
-    
+
+    headerContainer: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        width: '100%',
+        marginTop: 20, // Added margin to push down the content
+    },
+
+    backButtonContainer: {
+      alignSelf: 'flex-start',
+    },
+
+    searchInput: {
+      height: 40,
+      borderColor: 'gray',
+      borderWidth: 1,
+      paddingLeft: 10,
+      margin: 10,
+      borderRadius: 5,
+      width: '80%',
+    },
+      
 });
