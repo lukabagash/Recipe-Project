@@ -49,12 +49,6 @@ const Page2: React.FC<Page2Props> = () => {
             value={searchQuery}
           />
         </View>
-        {selectedItem && (
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ marginTop: 10 }}>{selectedItem}</Text>
-            <Text> selected</Text>
-          </View>
-        )}
 
       </View>
       <FlatList
@@ -63,10 +57,16 @@ const Page2: React.FC<Page2Props> = () => {
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => handleItemPress(item)}>
-            <Text>{item}</Text>
+            <Text style={styles.listItem}>{item}</Text>
           </TouchableOpacity>
         )}
       />
+        {selectedItem && (
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ marginTop: 10 }}>{selectedItem}</Text>
+            <Text> selected</Text>
+          </View>
+        )}
     </View>
   );
 }
