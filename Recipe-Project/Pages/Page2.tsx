@@ -38,15 +38,17 @@ const Page2: React.FC<Page2Props> = () => {
   };
 
   return (
-    <View style={styles.deafultPage}>
+    <View>
       <View style={styles.headerContainer}>
         <HeaderBackButton onPress={() => navigation.goBack()} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search Ingredients..."
-          onChangeText={handleSearch}
-          value={searchQuery}
-        />
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search Ingredients..."
+            onChangeText={handleSearch}
+            value={searchQuery}
+          />
+        </View>
         {selectedItem && (
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text style={{ marginTop: 10 }}>{selectedItem}</Text>
@@ -56,6 +58,7 @@ const Page2: React.FC<Page2Props> = () => {
 
       </View>
       <FlatList
+        contentContainerStyle={styles.flatListContent}
         data={autocompleteResults}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
