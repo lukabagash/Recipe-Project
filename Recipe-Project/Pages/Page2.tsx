@@ -12,7 +12,7 @@ const Page2: React.FC<Page2Props> = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
   const [autocompleteResults, setAutocompleteResults] = useState<string[]>([]);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const fetchAutocompleteResults = async (query: string) => {
     try {
@@ -34,9 +34,10 @@ const Page2: React.FC<Page2Props> = () => {
   };
 
   const handleItemPress = (item: string) => {
-    setSelectedItem(item);
+    if (!selectedItems.includes(item)) {
+      setSelectedItems(prevItems => [...prevItems, item]);
+    }
   };
-
   return (
     <View>
       <View style={styles.headerContainer}>
@@ -49,7 +50,6 @@ const Page2: React.FC<Page2Props> = () => {
             value={searchQuery}
           />
         </View>
-
       </View>
       <FlatList
         contentContainerStyle={styles.flatListContent}
@@ -61,9 +61,9 @@ const Page2: React.FC<Page2Props> = () => {
           </TouchableOpacity>
         )}
       />
-        {selectedItem && (
+        {selectedItems && (
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ marginTop: 10 }}>{selectedItem}</Text>
+            <Text style={{ marginTop: 10 }}>{selectedItems}</Text>
             <Text> selected</Text>
           </View>
         )}
