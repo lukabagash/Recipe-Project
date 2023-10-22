@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, TextInput, Text, StyleSheet } from 'react-native';
+import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import axios from 'axios';
 import { styles } from '../styles/styles';
@@ -12,6 +12,7 @@ const Page2: React.FC<Page2Props> = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
   const [autocompleteResults, setAutocompleteResults] = useState<string[]>([]);
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
   const fetchAutocompleteResults = async (query: string) => {
     try {
@@ -32,6 +33,10 @@ const Page2: React.FC<Page2Props> = () => {
     fetchAutocompleteResults(query);
   };
 
+  const handleItemPress = (item: string) => {
+    setSelectedItem(item);
+  };
+
   return (
     <View style={styles.deafultPage}>
       <View style={styles.headerContainer}>
@@ -42,11 +47,22 @@ const Page2: React.FC<Page2Props> = () => {
           onChangeText={handleSearch}
           value={searchQuery}
         />
+        {selectedItem && (
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ marginTop: 10 }}>{selectedItem}</Text>
+            <Text> selected</Text>
+          </View>
+        )}
+
       </View>
       <FlatList
         data={autocompleteResults}
         keyExtractor={(item) => item}
-        renderItem={({ item }) => <Text>{item}</Text>}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => handleItemPress(item)}>
+            <Text>{item}</Text>
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
