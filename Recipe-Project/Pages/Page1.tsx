@@ -12,7 +12,7 @@ const Page1: React.FC<Page1Props> = ({navigation}) => {
   return (
     <View style={styles.deafultPage}>
       <View style={styles.spacerP2}></View>
-      <Image source={require('../assets/recipe5.png')} style={{ width: 300, height: 300,position: 'relative'}} />
+      <Image source={require('../assets/recipe.png')} style={{ width: 400, height: 400,position: 'relative'}} />
       {/* <View style={{ 
         width: 350, 
         height: 1000, 
