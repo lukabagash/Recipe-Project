@@ -15,7 +15,8 @@ const Page2: React.FC<Page2Props> = () => {
   const [autocompleteResults, setAutocompleteResults] = useState<string[]>([]);
   const context = useContext(DataContext);
   if (!context) {
-      throw new Error("Page2 must be used within a DataProvider");
+      throw new Error("Page2 must be used within a DataProvider"); 
+      
   }
   const { selectedItems, setSelectedItems } = context;
 
