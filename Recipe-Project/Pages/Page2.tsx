@@ -6,11 +6,14 @@ import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { DataContext } from '../DataProvider/DataProvider';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-interface Page2Props {}
+interface Page2Props {
+  navigation: StackNavigationProp<any>;
+}
 
-const Page2: React.FC<Page2Props> = () => {
-  const navigation = useNavigation();
+const Page2: React.FC<Page2Props> = ({navigation}) => {
+  const navigationn = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
   const [autocompleteResults, setAutocompleteResults] = useState<string[]>([]);
   const context = useContext(DataContext);
@@ -48,7 +51,7 @@ const Page2: React.FC<Page2Props> = () => {
   return (
     <View>
       <View style={styles.headerContainer}>
-        <HeaderBackButton onPress={() => navigation.goBack()} />
+        <HeaderBackButton onPress={() => navigationn.goBack()} />
         {/* search bar */}
         <View style={styles.searchContainer}>
           <TextInput
@@ -70,38 +73,19 @@ const Page2: React.FC<Page2Props> = () => {
           </TouchableOpacity>
         )}
       />
-      {selectedItems.length > 0 && (
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', marginTop: 10 }}>
-          {selectedItems.map((item, index) => (
-            <View key={index} style={styles.labelBox}>
-              <Text style={styles.labelText}>{item}</Text>
-            </View>
-          ))}
-        </View>
-      )}
-    </View>
-  );
-}
-        {/* {selectedItems && (
+        {selectedItems && (
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text style={{ marginTop: 10 }}>{selectedItems}</Text>
             <Text> selected</Text>
           </View>
         )}
+        <View style={styles.buttonContainerP1}>
+        <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page3')}>
+          <Text style={styles.buttonTextP1}>Search</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
-} */}
-const labelStyles = StyleSheet.create({
-  labelBox: {
-    backgroundColor: '#e0e0e0', // light gray background
-    borderRadius: 15, // rounded corners
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginRight: 5,
-    marginBottom: 5,
-  },
-  labelText: {
-    fontSize: 12, // smaller font size
-  },
-});
+}
+
 export default Page2;
