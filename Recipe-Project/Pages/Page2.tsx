@@ -42,6 +42,7 @@ const Page2: React.FC<Page2Props> = () => {
     <View>
       <View style={styles.headerContainer}>
         <HeaderBackButton onPress={() => navigation.goBack()} />
+        {/* search bar */}
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
@@ -51,6 +52,7 @@ const Page2: React.FC<Page2Props> = () => {
           />
         </View>
       </View>
+      {/* items list */}
       <FlatList
         contentContainerStyle={styles.flatListContent}
         data={autocompleteResults}
@@ -61,7 +63,19 @@ const Page2: React.FC<Page2Props> = () => {
           </TouchableOpacity>
         )}
       />
-        {selectedItems && (
+      {selectedItems.length > 0 && (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', marginTop: 10 }}>
+          {selectedItems.map((item, index) => (
+            <View key={index} style={styles.labelBox}>
+              <Text style={styles.labelText}>{item}</Text>
+            </View>
+          ))}
+        </View>
+      )}
+    </View>
+  );
+}
+        {/* {selectedItems && (
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text style={{ marginTop: 10 }}>{selectedItems}</Text>
             <Text> selected</Text>
@@ -69,6 +83,18 @@ const Page2: React.FC<Page2Props> = () => {
         )}
     </View>
   );
-}
-
+} */}
+const labelStyles = StyleSheet.create({
+  labelBox: {
+    backgroundColor: '#e0e0e0', // light gray background
+    borderRadius: 15, // rounded corners
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginRight: 5,
+    marginBottom: 5,
+  },
+  labelText: {
+    fontSize: 12, // smaller font size
+  },
+});
 export default Page2;
