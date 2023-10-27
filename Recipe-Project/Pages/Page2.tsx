@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import axios from 'axios';
 import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
+import { DataContext } from '../DataProvider/DataProvider';
 
 interface Page2Props {}
 
@@ -12,7 +13,12 @@ const Page2: React.FC<Page2Props> = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
   const [autocompleteResults, setAutocompleteResults] = useState<string[]>([]);
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const context = useContext(DataContext);
+  if (!context) {
+      throw new Error("Page2 must be used within a DataProvider");
+  }
+  const { selectedItems, setSelectedItems } = context;
+
 
   const fetchAutocompleteResults = async (query: string) => {
     try {
