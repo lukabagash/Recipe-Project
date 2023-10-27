@@ -2,10 +2,10 @@ import React, { createContext, useState, ReactNode } from 'react';
 
 // Define the shape of the context data
 interface DataContextType {
-  selectedItems: any[]; // You can replace 'any' with the specific type of data you're storing if known
-  setSelectedItems: React.Dispatch<React.SetStateAction<any[]>>;
+    selectedItems: string[];
+    setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
 }
-
+  
 // Create a context with default values (optional)
 export const DataContext = createContext<DataContextType | undefined>(undefined);
 
