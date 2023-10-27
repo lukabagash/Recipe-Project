@@ -112,5 +112,43 @@ export const styles = StyleSheet.create({
         width: '92%',
     },
     
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+    },
+    box: {
+        width: '32%', // approx for 2 boxes per row
+        marginVertical: 5,
+        margin: 3,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 10,
+    },
+    image: {
+        width: '100%',
+        height: 150,
+        borderRadius: 10,
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        backgroundColor: '#f9f9f9',  // Or any other color you prefer
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',  // Or any other color you prefer
+        height: 60,  // Or any other height you prefer
+    },
+    headerText: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        textAlign: 'center',
+        fontSize: 18,
+        color: '#333',  // Or any other color you prefer
+    },
+    
       
 });

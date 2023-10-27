@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { DataContext } from '../DataProvider/DataProvider';
-import { View, Text } from 'react-native';
+import { View, Text, Image, FlatList, SafeAreaView, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
+import { useNavigation } from '@react-navigation/native';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 interface Page3Props {}
 
 const Page3: React.FC<Page3Props> = () => {
+  const navigationn = useNavigation();
   const context = useContext(DataContext);
   if (!context) {
       throw new Error("Page3 must be used within a DataProvider");
@@ -35,13 +38,29 @@ const Page3: React.FC<Page3Props> = () => {
   }, [selectedItems]);
 
   return (
-      <View style={styles.deafultPage}>
-          <Text>Recipes:</Text>
-          {recipes.map(recipe => (
-              <Text key={recipe.id}>{recipe.title}</Text>
-          ))}
-      </View>
-  );
+    <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.header}>
+            <HeaderBackButton onPress={() => navigationn.goBack()} />
+            <Text style={styles.headerText}>{recipes.length} Recipes</Text>
+        </View>
+        <FlatList
+            data={recipes}
+            keyExtractor={item => item.id.toString()}
+            numColumns={3}  // display 3 boxes per row
+
+            renderItem={({ item: recipe }) => (
+                <View style={styles.box}>
+                    <Image
+                        style={styles.image}
+                        source={{ uri: `https://spoonacular.com/recipeImages/${recipe.id}-312x231.jpg` }}
+                    />
+                    <Text>{recipe.title}</Text>
+                </View>
+            )}
+        />
+    </SafeAreaView>
+);
+
 }
 
 export default Page3;
