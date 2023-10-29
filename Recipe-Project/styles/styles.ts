@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     spacerP1: {
         flex: 0.30, // This will take up 90% of the screen height
     },
-
     spacerP2: {
         flex: 0.25, // This will take up 90% of the screen height
     },
@@ -65,7 +64,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         width: '100%',
-        marginTop: 20, // Added margin to push down the content
+        position: 'relative'
     },
 
     backButtonContainer: {
@@ -149,6 +148,61 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         color: '#333',  // Or any other color you prefer
     },
+    containerInstruction: {
+        flex: 1,
+        backgroundColor: '#f9f9f9',
+        paddingBottom: 30,  // Add padding at the bottom
+    },
+      scrollView: {
+        padding: 15,
+      },
+      recipeContainer: {
+        borderRadius: 10,
+        backgroundColor: '#ffffff',
+        padding: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 3,
+      },
+      recipeImage: {
+        width: '100%',
+        height: 220,
+        borderRadius: 10,
+        marginBottom: 15,
+      },
+      recipeTitle: {
+        fontSize: 26,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color: '#2c3e50',
+      },
+      ingredientsList: {
+        marginTop: 20,
+        borderTopWidth: 1,
+        borderTopColor: '#ecf0f1',
+        paddingTop: 15,
+      },
+      ingredientText: {
+        fontSize: 18,
+        marginBottom: 8,
+        color: '#34495e',
+      },
+      loadingText: {
+        fontSize: 20,
+        textAlign: 'center',
+        marginTop: 20,
+        color: '#7f8c8d',
+      },
+      htmlBaseFontStyle: {
+        fontSize: 16,
+        color: '#34495e',
+    },
     
+      backButton: {
+        position: 'absolute', // Set the back button to absolute position
+        zIndex: 1, // Ensure the back button is on top
+      },
       
 });
