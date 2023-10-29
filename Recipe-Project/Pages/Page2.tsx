@@ -1,13 +1,13 @@
 import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity, Keyboard, Dimensions } from 'react-native';
 import axios from 'axios';
-import { styles } from '../styles/styles';
+import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { DataContext } from '../DataProvider/DataProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 interface Page2Props {
   navigation: StackNavigationProp<any>;
@@ -53,22 +53,26 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
     }
     setSearchQuery(''); // Clear the search bar
     setAutocompleteResults([]); // Clear the items list
+    Keyboard.dismiss(); // Dismiss the keyboard
   };
 
   return (
     <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-      <View style={styles.headerContainer}>
+
+        
         <HeaderBackButton onPress={() => navigationn.goBack()} />
         {/* search bar */}
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search Ingredients..."
+            placeholder="Add Ingredients..."
             onChangeText={handleSearch}
             value={searchQuery}
           />
+          <TouchableOpacity onPress={() => navigation.navigate('Page3')}>
+            <Icon name="search" size={25} color="#000" style={{ margin: 8 }} />
+          </TouchableOpacity>
         </View>
-      </View>
       {/* items list */}
       <FlatList
       contentContainerStyle={styles.flatListContent}
@@ -80,13 +84,15 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
           <Text style={styles.listItem}>{item}</Text>
         </TouchableOpacity>
       )}
-    />
-    <View style={selectedStyles.selectedItemsContainer}>
+      keyboardShouldPersistTaps="always"
+      />
+    <Text style={styles.selectedItemsLabel}>Ingredients you have</Text>
+    <View style={styles.selectedItemsContainer}>
       {selectedItems && selectedItems.map((item, index) => (
-        <View key={index} style={selectedStyles.selectedItem}>
-          <Text>{item}</Text>
-          <TouchableOpacity onPress={() => handleRemoveItem(item)} style={selectedStyles.removeItemButton}>
-            <Text style={selectedStyles.removeItemText}>X</Text>
+        <View key={index} style={styles.selectedItem}>
+          <Text style={styles.selectedItemText}>{item}</Text>
+          <TouchableOpacity onPress={() => handleRemoveItem(item)} style={styles.removeItemButton}>
+            <Text style={styles.removeItemText}>X</Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -101,35 +107,5 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
     </View>
   );
 }
-const selectedStyles = StyleSheet.create({
 
-  selectedItemsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    padding: 4,
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-    borderRadius: 15,
-    marginVertical: 5,
-    shadowColor: '#000',
-    height: Dimensions.get('window').height * 0.3, // Set the height to 50% of screen height
-  },
-  selectedItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#e0e0e0',
-    padding: 4,
-    margin: 2,
-    borderRadius: 4,
-  },
-  removeItemButton: {
-    marginLeft: 4,
-    padding: 2,
-  },
-  removeItemText: {
-    color: 'black',
-    fontWeight: 'bold',
-  },
-});
 export default Page2;

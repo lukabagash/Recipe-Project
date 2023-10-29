@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
     deafultPage: {
@@ -26,6 +26,14 @@ export const styles = StyleSheet.create({
         paddingVertical: 17,
         paddingHorizontal: 30,
         borderRadius: 15,
+        elevation: 4,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+    },
+
+    buttonP2: {
         elevation: 4,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
@@ -68,13 +76,16 @@ export const styles = StyleSheet.create({
     },
 
     backButtonContainer: {
-      alignSelf: 'flex-start',
+        alignSelf: 'flex-start',
     },
 
     searchContainer: {
-        width: '100%',
+        width: '95%',
         alignItems: 'center',
         marginTop: 10,
+        margin: 12,
+        flexDirection: 'row',
+        //alignItems: 'center',
     },
 
     searchInput: {
@@ -204,5 +215,58 @@ export const styles = StyleSheet.create({
         position: 'absolute', // Set the back button to absolute position
         zIndex: 1, // Ensure the back button is on top
       },
+    selectedItemsContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        padding: 4,
+        borderTopWidth: 4,
+        borderTopColor: '#2C3E50',
+        margin: 15,
+        marginVertical: 5,
+        shadowColor: '#000',
+        height: Dimensions.get('window').height * 0.3, // Set the height to 50% of screen height
+    },
+    
+    selectedItemsLabel: {
+        fontSize: 16,
+        fontcolor: '#2C3E50',
+        fontWeight: 'bold',
+        marginBottom: 5,  // Adjust for spacing between the label and the container
+        marginLeft: 20,    // Optional: for some left spacing
+      },
       
+
+    selectedItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#e0e0e0',
+        padding: 6,
+        marginTop: 7,
+        marginRight: 7,
+        borderRadius: 18,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+
+    selectedItemText: {
+        color: 'black',
+        fontSize: 16,
+        marginLeft: 10,
+    },
+
+    removeItemButton: {
+        marginLeft: 5,
+        padding: 2,
+    },
+
+    removeItemText: {
+        color: 'black',
+        fontSize: 16,
+        marginRight: 7,
+    },
+    
 });
