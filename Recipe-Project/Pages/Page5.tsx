@@ -6,7 +6,7 @@ interface Page5Props {}
 
 const Page5: React.FC<Page5Props> = () => {
   return (
-    <View style={styles.deafultPage}>
+    <View style={styles.defaultPage}>
       <Text>Page 5</Text>
     </View>
   );

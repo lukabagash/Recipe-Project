@@ -69,7 +69,7 @@ const Page4: React.FC<Page4Props> = () => {
     // ... add styles for other tags as needed ...
 };
 return (
-  <SafeAreaView style={styles.containerInstruction}>
+  <SafeAreaView style={[styles.containerInstruction, styles.backgroundColor]}>
     <ScrollView contentContainerStyle={{ paddingBottom: 20 }} style={{backgroundColor: '#FFFAEE'}}>
       {recipeDetails ? (
         <>
