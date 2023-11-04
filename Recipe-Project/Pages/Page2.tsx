@@ -1,5 +1,5 @@
 import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity, Keyboard, Dimensions } from 'react-native';
+import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity, Keyboard, Dimensions, SafeAreaView } from 'react-native';
 import axios from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -57,10 +57,16 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
   };
 
   return (
+    <SafeAreaView style={{ flex: 1 }}>
     <View style={{ flex: 1, justifyContent: 'flex-end' }}>
 
-        
-        <HeaderBackButton onPress={() => navigationn.goBack()} />
+        <View>
+    <HeaderBackButton 
+              onPress={() => navigationn.goBack()} 
+              labelVisible={false} 
+              tintColor="black"
+            />
+            </View>
         {/* search bar */}
         <View style={styles.searchContainer}>
           <TextInput
@@ -105,6 +111,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       </View>
       <View style={{ height: 40 }} />
     </View>
+    </SafeAreaView>
   );
 }
 

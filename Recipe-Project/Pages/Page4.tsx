@@ -71,42 +71,48 @@ return (
   <SafeAreaView style={styles.containerInstruction}>
     <ScrollView style={styles.scrollView} contentContainerStyle={{ paddingBottom: 20 }}>
       {recipeDetails ? (
-        <View style={styles.recipeContainer}>
-          {/* Container for the back button and the image */}
-          <View style={styles.headerContainer}>
+        <>
+          {/* Image Container */}
+          <View style={[styles.recipeContainer, styles.spaceBelow]}>
             <Image
               style={styles.recipeImage}
               source={{ uri: recipeDetails.image }}
             />
             <HeaderBackButton 
-    style={styles.backButton} 
-    onPress={() => navigationn.goBack()} 
-    labelVisible={false} 
-    tintColor="black"
-/>
-
+              style={styles.backButton} 
+              onPress={() => navigationn.goBack()} 
+              labelVisible={false} 
+              tintColor="black"
+            />
+            <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
           </View>
-          <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
-          <HTML 
-              source={{ html: recipeDetails.instructions }} 
-              contentWidth={width}
-              baseStyle={styles.htmlBaseFontStyle}
-              tagsStyles={htmlTagStyles}
-          />
-          <View style={styles.ingredientsList}>
+
+          {/* Title and Instructions Container */}
+          <View style={[styles.recipeContainer, styles.spaceBelow]}>
+            <HTML 
+                source={{ html: recipeDetails.instructions }} 
+                contentWidth={width}
+                baseStyle={styles.htmlBaseFontStyle}
+                tagsStyles={htmlTagStyles}
+            />
+          </View>
+
+          {/* Ingredients Container */}
+          <View style={styles.recipeContainer}>
             {recipeDetails.extendedIngredients.map((ingredient: any) => (
               <Text key={ingredient.id} style={styles.ingredientText}>
                 {ingredient.name}: {ingredient.amount} {ingredient.unit}
               </Text>
             ))}
           </View>
-        </View>
+        </>
       ) : (
         <Text style={styles.loadingText}>Loading...</Text>
       )}
     </ScrollView>
   </SafeAreaView>
 );
+
 
 }
 

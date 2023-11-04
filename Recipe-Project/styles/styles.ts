@@ -207,7 +207,7 @@ export const styles = StyleSheet.create({
         color: '#7f8c8d',
       },
       htmlBaseFontStyle: {
-        fontSize: 16,
+        //fontSize: 16,
         color: '#34495e',
     },
     
@@ -230,12 +230,15 @@ export const styles = StyleSheet.create({
     
     selectedItemsLabel: {
         fontSize: 16,
-        fontcolor: '#2C3E50',
+        color: '#2C3E50',
         fontWeight: 'bold',
         marginBottom: 5,  // Adjust for spacing between the label and the container
         marginLeft: 20,    // Optional: for some left spacing
       },
-      
+    
+    spaceBelow: {
+      marginBottom: 20, // Adjust the space as needed
+    },
 
     selectedItem: {
         flexDirection: 'row',

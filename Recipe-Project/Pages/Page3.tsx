@@ -44,7 +44,12 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.header}>
-            <HeaderBackButton onPress={() => navigationn.goBack()} />
+                        <HeaderBackButton 
+              style={styles.backButton} 
+              onPress={() => navigationn.goBack()} 
+              labelVisible={false} 
+              tintColor="black"
+            />
             <Text style={styles.headerText}>{recipes.length} Recipes</Text>
         </View>
         <FlatList
