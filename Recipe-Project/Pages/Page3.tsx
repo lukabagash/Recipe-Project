@@ -42,20 +42,21 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
   }, [selectedItems]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.header}>
-                        <HeaderBackButton 
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE'}}>
+        <View style={[styles.header, {backgroundColor: '#FFFAEE'}]}>
+            <HeaderBackButton 
               style={styles.backButton} 
               onPress={() => navigationn.goBack()} 
               labelVisible={false} 
-              tintColor="black"
+              tintColor="#691914"
             />
-            <Text style={styles.headerText}>{recipes.length} Recipes</Text>
+            <Text style={[styles.headerText, {color: '#691914'}]}>{recipes.length} Recipes</Text>
         </View>
         <FlatList
             data={recipes}
             keyExtractor={item => item.id.toString()}
-            numColumns={3}  // display 3 boxes per row
+            contentContainerStyle={{ backgroundColor: '#FFFAEE' }}
+            numColumns={2}  // display 3 boxes per row
 
             renderItem={({ item: recipe }) => (
               <TouchableOpacity style={styles.box} onPress={() => navigation.navigate('Page4', { recipeId: recipe.id })}>
@@ -64,7 +65,7 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                         style={styles.image}
                         source={{ uri: `https://spoonacular.com/recipeImages/${recipe.id}-312x231.jpg` }}
                     />
-                    <Text>{recipe.title}</Text>
+                    <Text style = {{ color: '#691914', marginTop: 10, fontWeight: 'bold' }}>{recipe.title}</Text>
                 </View>
                 </TouchableOpacity>
             )}

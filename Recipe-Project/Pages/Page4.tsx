@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, Image, ScrollView, SafeAreaView, LogBox } from 'react-native';
 import axios from 'axios';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { styles } from '../styles/styles';
@@ -18,6 +18,7 @@ interface RouteParams {
 type RootStackParamList = {
   Page4: RouteParams;
 };
+LogBox.ignoreLogs(['Warning: Encountered two children with the same key, `1001`.']);
 
 const Page4: React.FC<Page4Props> = () => {
   const route = useRoute<RouteProp<RootStackParamList, 'Page4'>>();
@@ -49,31 +50,31 @@ const Page4: React.FC<Page4Props> = () => {
   const htmlTagStyles = {
     p: {
         marginVertical: 10,
-        lineHeight: 22,
+        lineHeight: 52,
     },
     h1: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 'bold' as 'bold', // Explicitly cast the type
         marginVertical: 15,
     },
     h2: {
-        fontSize: 22,
+        fontSize: 26,
         fontWeight: 'bold' as 'bold', // Explicitly cast the type
         marginVertical: 12,
     },
     h3: {
-        fontSize: 20,
+        fontSize: 26,
         marginVertical: 10,
     },
     // ... add styles for other tags as needed ...
 };
 return (
   <SafeAreaView style={styles.containerInstruction}>
-    <ScrollView style={styles.scrollView} contentContainerStyle={{ paddingBottom: 20 }}>
+    <ScrollView contentContainerStyle={{ paddingBottom: 20 }} style={{backgroundColor: '#FFFAEE'}}>
       {recipeDetails ? (
         <>
           {/* Image Container */}
-          <View style={[styles.recipeContainer, styles.spaceBelow]}>
+          <View >
             <Image
               style={styles.recipeImage}
               source={{ uri: recipeDetails.image }}
@@ -84,11 +85,32 @@ return (
               labelVisible={false} 
               tintColor="black"
             />
-            <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
           </View>
 
-          {/* Title and Instructions Container */}
+          {/* Title and Summary */}
           <View style={[styles.recipeContainer, styles.spaceBelow]}>
+            <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
+            {recipeDetails.summary && (
+                <HTML 
+                  source={{ html: recipeDetails.summary.split("Users who liked this recipe also liked")[0]}} 
+                  contentWidth={width}
+                  baseStyle={styles.htmlBaseFontStyle}
+                  tagsStyles={htmlTagStyles}
+                />
+              )}
+          </View>
+
+          {/* Ingredients Container */}
+          <View style={[styles.recipeContainer, styles.spaceBelow]}>
+            {recipeDetails.extendedIngredients.map((ingredient: any) => (
+              <Text key={ingredient.id} style={styles.ingredientText}>
+                {ingredient.name}: {ingredient.amount} {ingredient.unit}
+              </Text>
+            ))}
+          </View>
+
+          {/* Instructions Container */}
+          <View style={[styles.recipeContainer]}>
             <HTML 
                 source={{ html: recipeDetails.instructions }} 
                 contentWidth={width}
@@ -97,14 +119,6 @@ return (
             />
           </View>
 
-          {/* Ingredients Container */}
-          <View style={styles.recipeContainer}>
-            {recipeDetails.extendedIngredients.map((ingredient: any) => (
-              <Text key={ingredient.id} style={styles.ingredientText}>
-                {ingredient.name}: {ingredient.amount} {ingredient.unit}
-              </Text>
-            ))}
-          </View>
         </>
       ) : (
         <Text style={styles.loadingText}>Loading...</Text>

@@ -129,27 +129,30 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     box: {
-        width: '32%', // approx for 2 boxes per row
+        width: '40%', // approx for 2 boxes per row
         marginVertical: 5,
         margin: 3,
-        backgroundColor: 'white',
+        backgroundColor: '#FFFDF7',
         borderRadius: 10,
         padding: 10,
+        borderWidth: 1, // Set the border width
+        borderColor: '#FFFDF7', // Set the border color
+        elevation: 5, // This adds shadow on Android
+        shadowColor: '#691914', // This adds shadow on iOS
+        shadowOffset: { width: 0, height: 2 }, // Shadow position for iOS
+        shadowOpacity: 0.25, // Shadow opacity for iOS
+        shadowRadius: 2, // Shadow blur radius for iOS
     },
     image: {
         width: '100%',
-        height: 150,
+        height: 100,
         borderRadius: 10,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 10,
-        backgroundColor: '#f9f9f9',  // Or any other color you prefer
-        borderBottomWidth: 1,
-        borderBottomColor: '#e0e0e0',  // Or any other color you prefer
-        height: 60,  // Or any other height you prefer
+        height: 50,  // Or any other height you prefer
     },
     headerText: {
         position: 'absolute',
@@ -162,14 +165,10 @@ export const styles = StyleSheet.create({
     containerInstruction: {
         flex: 1,
         backgroundColor: '#f9f9f9',
-        paddingBottom: 30,  // Add padding at the bottom
     },
-      scrollView: {
-        padding: 15,
-      },
       recipeContainer: {
         borderRadius: 10,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#FFFDF7',
         padding: 15,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -207,7 +206,7 @@ export const styles = StyleSheet.create({
         color: '#7f8c8d',
       },
       htmlBaseFontStyle: {
-        //fontSize: 16,
+        fontSize: 16,
         color: '#34495e',
     },
     
@@ -237,7 +236,7 @@ export const styles = StyleSheet.create({
       },
     
     spaceBelow: {
-      marginBottom: 20, // Adjust the space as needed
+      marginBottom: 17, // Adjust the space as needed
     },
 
     selectedItem: {
