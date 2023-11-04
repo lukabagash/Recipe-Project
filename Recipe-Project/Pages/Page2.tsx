@@ -57,14 +57,14 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-    <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+    <SafeAreaView style={[{ flex: 1 }, styles.backgroundColor]}>
+    <View style={[{ flex: 1, justifyContent: 'flex-end',}, styles.backgroundColor]}>
 
         <View>
     <HeaderBackButton 
               onPress={() => navigationn.goBack()} 
               labelVisible={false} 
-              tintColor="black"
+              tintColor="#84251E"
             />
             </View>
         {/* search bar */}
@@ -76,7 +76,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
             value={searchQuery}
           />
           <TouchableOpacity onPress={() => navigation.navigate('Page3')}>
-            <Icon name="search" size={25} color="#000" style={{ margin: 8 }} />
+            <Icon name="search" size={25} color="#84251E" style={{ margin: 8 }} />
           </TouchableOpacity>
         </View>
       {/* items list */}
