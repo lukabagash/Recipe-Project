@@ -1,13 +1,15 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
-    deafultPage: {
+    defaultPage: {
         flex: 1, 
         justifyContent: 'center', 
         alignItems: 'center' ,
-        
+        backgroundColor: '#FFFAEE',
     },
-
+    backgroundColor: {
+        backgroundColor: '#FFFAEE', // Replace with your desired color
+      },
     spacerP1: {
         flex: 0.30, // This will take up 90% of the screen height
     },
@@ -22,15 +24,15 @@ export const styles = StyleSheet.create({
     },
 
     buttonP1: {
-        backgroundColor: '#2C3E50',
+        backgroundColor: '#ECA457',
         paddingVertical: 17,
         paddingHorizontal: 30,
-        borderRadius: 15,
+        borderRadius: 30,
         elevation: 4,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.3,
-        shadowRadius: 4,
+        shadowRadius: 2,
     },
 
     buttonP2: {
@@ -42,7 +44,7 @@ export const styles = StyleSheet.create({
     },
       
     buttonTextP1: {
-        color: '#ECF0F1',
+        color: '#FFFFFF',
         fontWeight: 'bold',
         fontSize: 15,
         textAlign: 'center',
@@ -53,7 +55,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 8, // Slightly reduced space between the title and the description
-        color: '#2C3E50', // Darker shade of blue for a professional look
+        color: '#84251E', // Darker shade of blue for a professional look
         textShadowColor: 'rgba(0, 0, 0, 0.1)', // Subtle text shadow for depth
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 2,
@@ -65,7 +67,7 @@ export const styles = StyleSheet.create({
         marginBottom: 18,
         marginLeft: '15%',  // 15% space from the left
         marginRight: '15%', // 15% space from the right
-        color: '#34495E',   // Slightly darker shade for the description
+        color: '#691914',   // Slightly darker shade for the description
     },
 
     headerContainer: {
@@ -86,42 +88,44 @@ export const styles = StyleSheet.create({
         margin: 12,
         flexDirection: 'row',
         //alignItems: 'center',
+        color: '#FFFFFF'
     },
 
     searchInput: {
         height: 45,
-        borderColor: '#E0E0E0',
+        borderColor: '#84251E',
         borderWidth: 1,
         paddingLeft: 15,
         borderRadius: 22.5,
         width: '90%',
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#FFFFFF',
         fontSize: 16,
+        color: '#84251E'
     },
 
     flatListContent: {
-        paddingLeft: '7%',
+        paddingLeft: '3%',
+        borderRadius: 18,
     },
 
     listItem: {
-        paddingVertical: 12,
-        paddingHorizontal: 15,
+        alignItems: 'center',
+        padding: 10,
+        marginTop: 7,
+        marginRight: 7,
         fontSize: 16,
         borderWidth: 1,
-        borderColor: '#E0E0E0',
-        borderRadius: 15,
-        marginVertical: 5,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        elevation: 4,
-        width: '92%',
+        borderColor: '#84251E',
+        borderRadius: 18,
+        shadowColor: '#84251E',
+        shadowOpacity: 0.25,
+        shadowRadius: 2,
+        elevation: 9,
+        width: '90%',
+        color: '#84251E',
+        backgroundColor: '#FFFFFF',
     },
-    
+
     container: {
         flex: 1,
         flexDirection: 'row',
@@ -220,7 +224,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 4,
         borderTopWidth: 4,
-        borderTopColor: '#2C3E50',
+        borderTopColor: '#84251E',
         margin: 15,
         marginVertical: 5,
         shadowColor: '#000',
@@ -229,10 +233,11 @@ export const styles = StyleSheet.create({
     
     selectedItemsLabel: {
         fontSize: 16,
-        color: '#2C3E50',
+        color: '#84251E',
         fontWeight: 'bold',
         marginBottom: 5,  // Adjust for spacing between the label and the container
         marginLeft: 20,    // Optional: for some left spacing
+        marginTop: 15
       },
     
     spaceBelow: {
@@ -242,20 +247,20 @@ export const styles = StyleSheet.create({
     selectedItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#e0e0e0',
+        backgroundColor: '#FFFFFF',
         padding: 6,
         marginTop: 7,
         marginRight: 7,
         borderRadius: 18,
-        shadowColor: '#000',
+        shadowColor: '#84251E',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowRadius: 2,
         elevation: 5,
     },
 
     selectedItemText: {
-        color: 'black',
+        color: '#84251E',
         fontSize: 16,
         marginLeft: 10,
     },
@@ -266,7 +271,7 @@ export const styles = StyleSheet.create({
     },
 
     removeItemText: {
-        color: 'black',
+        color: '#84251E',
         fontSize: 16,
         marginRight: 7,
     },

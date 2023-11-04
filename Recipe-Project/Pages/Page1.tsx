@@ -10,7 +10,7 @@ interface Page1Props {
 
 const Page1: React.FC<Page1Props> = ({navigation}) => {
   return (
-    <View style={styles.deafultPage}>
+    <View style={styles.defaultPage}>
       <View style={styles.spacerP2}></View>
       <Image source={require('../assets/recipe.png')} style={{ width: 400, height: 400,position: 'relative'}} />
       <View style={styles.spacerP1}></View>
