@@ -320,7 +320,7 @@ export const styles = StyleSheet.create({
 lineStyle: {
     borderBottomColor: '#84251E', // You can choose any color you like
     borderBottomWidth: 1,
-    width: '98%',
+    width: '100%',
     alignSelf: 'flex-start',
     marginVertical: 10, // Adjust the vertical spacing as needed
     marginBottom: 20
