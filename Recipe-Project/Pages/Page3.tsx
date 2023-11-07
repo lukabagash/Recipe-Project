@@ -42,8 +42,8 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
   }, [selectedItems]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE'}}>
-        <View style={[styles.header, {backgroundColor: '#FFFAEE'}]}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>
+        <View style={[styles.header, {backgroundColor: '#FFFAEE', paddingLeft: 8}]}>
             <HeaderBackButton 
               style={styles.backButton} 
               onPress={() => navigationn.goBack()} 

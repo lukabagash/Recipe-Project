@@ -60,18 +60,20 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
     <SafeAreaView style={[{ flex: 1 }, styles.backgroundColor]}>
     <View style={[{ flex: 1, justifyContent: 'flex-end',}, styles.backgroundColor]}>
 
-        <View>
+    <View style={{ paddingLeft: 5 }}> 
     <HeaderBackButton 
               onPress={() => navigationn.goBack()} 
               labelVisible={false} 
               tintColor="#84251E"
             />
+            
             </View>
         {/* search bar */}
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
             placeholder="Add Ingredients..."
+            placeholderTextColor="#B4887C"
             onChangeText={handleSearch}
             value={searchQuery}
           />
@@ -92,7 +94,10 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       )}
       keyboardShouldPersistTaps="always"
       />
+      
+    <View style={styles.additionalTopBorder}>
     <Text style={styles.selectedItemsLabel}>Ingredients you have</Text>
+    </View>
     <View style={styles.selectedItemsContainer}>
       {selectedItems && selectedItems.map((item, index) => (
         <View key={index} style={styles.selectedItem}>

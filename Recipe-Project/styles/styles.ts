@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFAEE', // Replace with your desired color
       },
     spacerP1: {
-        flex: 0.30, // This will take up 90% of the screen height
+        flex: 0.25, // This will take up 90% of the screen height
     },
     spacerP2: {
         flex: 0.25, // This will take up 90% of the screen height
@@ -79,6 +79,7 @@ export const styles = StyleSheet.create({
 
     backButtonContainer: {
         alignSelf: 'flex-start',
+        paddingLeft: 20
     },
 
     searchContainer: {
@@ -87,7 +88,6 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         margin: 12,
         flexDirection: 'row',
-        //alignItems: 'center',
         color: '#FFFFFF'
     },
 
@@ -111,17 +111,20 @@ export const styles = StyleSheet.create({
     listItem: {
         alignItems: 'center',
         padding: 10,
+        paddingLeft: 12,
         marginTop: 7,
         marginRight: 7,
         fontSize: 16,
         borderWidth: 1,
         borderColor: '#84251E',
-        borderRadius: 18,
+        borderRadius: 20,
+        overflow: 'hidden',
         shadowColor: '#84251E',
-        shadowOpacity: 0.25,
-        shadowRadius: 2,
-        elevation: 9,
-        width: '90%',
+        shadowOffset: { width: 0, height: 2 }, // The offset of the shadow
+        shadowOpacity: 0.1, // The opacity of the shadow
+        shadowRadius: 4, // The blur radius of the shadow
+        elevation: 3,
+        width: '88%',
         color: '#84251E',
         backgroundColor: '#FFFFFF',
     },
@@ -218,6 +221,19 @@ export const styles = StyleSheet.create({
         position: 'absolute', // Set the back button to absolute position
         zIndex: 1, // Ensure the back button is on top
       },
+    additionalTopBorder: {
+        borderTopWidth: 1,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopColor: '#84251E', // Replace with the color you want for the additional line
+        borderTopLeftRadius: 18,
+        borderTopRightRadius: 18,
+        borderLeftColor: '#84251E',
+        borderRightColor: '#84251E',
+        width: '100.35%',
+        alignSelf: 'center'
+      },
+
     selectedItemsContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -225,6 +241,8 @@ export const styles = StyleSheet.create({
         padding: 4,
         borderTopWidth: 4,
         borderTopColor: '#84251E',
+        TopLeftRadius: 10,
+        TopRightRadius: 10,
         margin: 15,
         marginVertical: 5,
         shadowColor: '#000',
@@ -235,6 +253,10 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         color: '#84251E',
         fontWeight: 'bold',
+        borderTopWidth: 1,
+        borderTopColor: '#84251E', // Replace with the color you want for the additional line
+        borderRadius: 18,
+        width: '100%',
         marginBottom: 5,  // Adjust for spacing between the label and the container
         marginLeft: 20,    // Optional: for some left spacing
         marginTop: 15
