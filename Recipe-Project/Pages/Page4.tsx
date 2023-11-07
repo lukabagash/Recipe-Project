@@ -90,6 +90,7 @@ return (
           {/* Title and Summary */}
           <View style={[styles.recipeContainer, styles.spaceBelow]}>
             <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
+            <View style={styles.lineStyle} />
             {recipeDetails.summary && (
                 <HTML 
                   source={{ html: recipeDetails.summary.split("Users who liked this recipe also liked")[0]}} 

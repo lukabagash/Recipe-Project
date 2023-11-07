@@ -56,19 +56,30 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
             data={recipes}
             keyExtractor={item => item.id.toString()}
             contentContainerStyle={{ backgroundColor: '#FFFAEE' }}
-            numColumns={2}  // display 3 boxes per row
+            numColumns={1}  // display 3 boxes per row
 
             renderItem={({ item: recipe }) => (
-              <TouchableOpacity style={styles.box} onPress={() => navigation.navigate('Page4', { recipeId: recipe.id })}>
-                <View >
+                <TouchableOpacity 
+                  style={styles.box} 
+                  onPress={() => navigation.navigate('Page4', { recipeId: recipe.id })}
+                >
+                  <View style={{ flexDirection: 'row'}}>
                     <Image
-                        style={styles.image}
-                        source={{ uri: `https://spoonacular.com/recipeImages/${recipe.id}-312x231.jpg` }}
+                      style={[styles.image]} // Assign flex value as needed
+                      source={{ uri: `https://spoonacular.com/recipeImages/${recipe.id}-312x231.jpg` }}
                     />
-                    <Text style = {{ color: '#691914', marginTop: 10, fontWeight: 'bold' }}>{recipe.title}</Text>
-                </View>
+                    <View style={{ flex: 3, marginLeft: 10}}>
+                        <Text 
+                          style={[styles.title, { flex: 3, paddingRight: 10 }]} // Assign flex value as needed
+                        >
+                          {recipe.title}
+                        </Text>
+                        <Text style={styles.likes}>Likes: {recipe.likes}</Text>
+                    </View>
+                  </View>
                 </TouchableOpacity>
-            )}
+
+              )}
         />
     </SafeAreaView>
 );

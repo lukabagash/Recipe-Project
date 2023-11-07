@@ -133,12 +133,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     box: {
-        width: '40%', // approx for 2 boxes per row
+        width: '97.8%', // approx for 2 boxes per row
         marginVertical: 5,
         margin: 3,
         backgroundColor: '#FFFDF7',
         borderRadius: 10,
-        padding: 10,
         borderWidth: 1, // Set the border width
         borderColor: '#FFFDF7', // Set the border color
         elevation: 5, // This adds shadow on Android
@@ -147,10 +146,29 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25, // Shadow opacity for iOS
         shadowRadius: 2, // Shadow blur radius for iOS
     },
+    likes: {
+        fontSize: 14,
+        color: '#691914', // A neutral color for the text
+        marginTop: 4, // Spacing from the title to the likes
+        fontWeight: 'bold', // Make it bold to stand out a little
+        paddingLeft: 0,
+        paddingBottom: 10
+      },
     image: {
-        width: '100%',
-        height: 100,
-        borderRadius: 10,
+        width: 100,
+        height: 112,
+        flex: 2, // Adjust this value as needed to allocate space for the image
+        resizeMode: 'stretch',
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10
+
+    },
+    title: {
+        paddingTop: 13,
+        color: '#691914',
+        fontWeight: 'bold',
+        flex: 3,
+        fontSize: 17,
     },
     header: {
         flexDirection: 'row',
@@ -189,7 +207,7 @@ export const styles = StyleSheet.create({
       recipeTitle: {
         fontSize: 26,
         fontWeight: 'bold',
-        marginBottom: 10,
+        marginBottom: 7,
         color: '#2c3e50',
       },
       ingredientsList: {
@@ -275,5 +293,15 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         marginRight: 7,
     },
+
+    // Add this to your styles.js or wherever you define your styles
+lineStyle: {
+    borderBottomColor: '#84251E', // You can choose any color you like
+    borderBottomWidth: 1,
+    width: '98%',
+    alignSelf: 'flex-start',
+    marginVertical: 10, // Adjust the vertical spacing as needed
+    marginBottom: 20
+  },
     
 });
