@@ -68,13 +68,13 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                       style={[styles.image]} // Assign flex value as needed
                       source={{ uri: `https://spoonacular.com/recipeImages/${recipe.id}-312x231.jpg` }}
                     />
-                    <View style={{ flex: 3, marginLeft: 10}}>
+                    <View style={{ flex: 3, marginLeft: 10, justifyContent: 'center', position: 'relative' }}>
                         <Text 
-                          style={[styles.title, { flex: 3, paddingRight: 10 }]} // Assign flex value as needed
+                          style={[styles.title, { paddingRight: 10, paddingBottom: 15 }]} // Assign flex value as needed
                         >
                           {recipe.title}
                         </Text>
-                        <Text style={styles.likes}>Likes: {recipe.likes}</Text>
+                        <Text style={[styles.likes, { position: 'absolute', bottom: 15, right: 10 }]}>Likes: {recipe.likes}</Text>
                     </View>
                   </View>
                 </TouchableOpacity>

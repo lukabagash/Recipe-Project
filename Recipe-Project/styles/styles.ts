@@ -154,8 +154,6 @@ export const styles = StyleSheet.create({
         color: '#691914', // A neutral color for the text
         marginTop: 4, // Spacing from the title to the likes
         fontWeight: 'bold', // Make it bold to stand out a little
-        paddingLeft: 0,
-        paddingBottom: 10
       },
     image: {
         width: 100,
@@ -164,13 +162,10 @@ export const styles = StyleSheet.create({
         resizeMode: 'stretch',
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10
-
     },
     title: {
-        paddingTop: 13,
         color: '#691914',
         fontWeight: 'bold',
-        flex: 3,
         fontSize: 17,
     },
     header: {
