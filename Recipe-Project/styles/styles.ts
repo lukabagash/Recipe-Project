@@ -238,20 +238,62 @@ export const styles = StyleSheet.create({
       backButton: {
         position: 'absolute', // Set the back button to absolute position
         zIndex: 1, // Ensure the back button is on top
-      },
+    },
+    errorContainer: {
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: '#FFFFFF',
+        padding: 6,
+        margin: 10,
+        borderRadius: 18,
+        shadowColor: '#84251E',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        elevation: 5,
+    },
+
+    errorMessage: {
+        color: '#84251E',
+        fontSize: 18,
+        marginLeft: 10,
+        margin: 10
+    },
+
     additionalTopBorder: {
-        borderTopWidth: 1,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
+        width: '100.5%',
+        alignSelf: 'center',
+        shadowColor: '#84251E',
+        shadowOffset: { width: 0, height: -4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 4,
+      },
+
+    textContainer: {
+        backgroundColor: '#FFFAEE',
+        paddingHorizontal: 10, 
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
         borderTopColor: '#84251E', // Replace with the color you want for the additional line
         borderTopLeftRadius: 18,
         borderTopRightRadius: 18,
         borderLeftColor: '#84251E',
         borderRightColor: '#84251E',
-        width: '100.35%',
-        alignSelf: 'center'
-      },
+        width: '100%',
+        alignSelf: 'center',
 
+    },
+    topLabel: {
+        fontSize: 16,
+        color: '#84251E',
+        fontWeight: 'bold',
+        width: '100%',
+        marginBottom: 5,  // Adjust for spacing between the label and the container
+        marginLeft: 16,    // Optional: for some left spacing
+        marginTop: 15,
+    },
     selectedItemsContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -277,8 +319,8 @@ export const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 5,  // Adjust for spacing between the label and the container
         marginLeft: 20,    // Optional: for some left spacing
-        marginTop: 15
-      },
+        marginTop: 15,
+    },
     
     spaceBelow: {
       marginBottom: 17, // Adjust the space as needed
