@@ -40,7 +40,7 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
 
       fetchRecipes();
   }, [selectedItems]);
-
+  const [isScrollEnabled, setIsScrollEnabled] = useState(true);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>
         <View style={[styles.header, {backgroundColor: '#FFFAEE', paddingLeft: 8}]}>
@@ -62,19 +62,32 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                 <TouchableOpacity 
                   style={styles.box} 
                   onPress={() => navigation.navigate('Page4', { recipeId: recipe.id })}
+                  onPressIn={() => setIsScrollEnabled(false)}
+                  onPressOut={() => setIsScrollEnabled(true)}
                 >
-                  <View style={{ flexDirection: 'row'}}>
-                    <Image
-                      style={[styles.image]} // Assign flex value as needed
-                      source={{ uri: `https://spoonacular.com/recipeImages/${recipe.id}-312x231.jpg` }}
-                    />
-                    <View style={{ flex: 3, marginLeft: 10, justifyContent: 'center', position: 'relative' }}>
+                  <View style={{ flexDirection: 'row', padding: 3}}>
+                  <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.imageContainer}>
+                          <Image
+                            style={styles.image}
+                            source={{ uri: `https://spoonacular.com/recipeImages/${recipe.id}-312x231.jpg` }}
+                          />
+                        </View>
+                      </View>
+
+                    <View style={{ flex: 3, marginLeft: 13, justifyContent: 'center', position: 'relative', paddingRight: 13 }}>
                         <Text 
-                          style={[styles.title, { paddingRight: 10, paddingBottom: 15 }]} // Assign flex value as needed
+                          style={[styles.title, {paddingBottom: 2 }]} // Assign flex value as needed
                         >
                           {recipe.title}
                         </Text>
-                        <Text style={[styles.likes, { position: 'absolute', bottom: 15, right: 10 }]}>Likes: {recipe.likes}</Text>
+
+            
+                        <Text style={[styles.likes]}>
+                        {recipe.missedIngredients.length} more ingredients needed 
+                        </Text>
+              
+                        <Text style={[styles.likes, { position: 'absolute', bottom: 0, right: 10 }]}>{recipe.likes} likes</Text>
                     </View>
                   </View>
                 </TouchableOpacity>

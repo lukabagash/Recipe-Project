@@ -139,29 +139,33 @@ export const styles = StyleSheet.create({
         width: '97.8%', // approx for 2 boxes per row
         marginVertical: 5,
         margin: 3,
-        backgroundColor: '#FFFDF7',
+        backgroundColor: '#FFFAEE',
         borderRadius: 10,
-        borderWidth: 1, // Set the border width
         borderColor: '#FFFDF7', // Set the border color
         elevation: 5, // This adds shadow on Android
-        shadowColor: '#691914', // This adds shadow on iOS
-        shadowOffset: { width: 0, height: 2 }, // Shadow position for iOS
-        shadowOpacity: 0.25, // Shadow opacity for iOS
-        shadowRadius: 2, // Shadow blur radius for iOS
     },
     likes: {
         fontSize: 14,
-        color: '#691914', // A neutral color for the text
+        color: '#8B3E3A', // A neutral color for the text
         marginTop: 4, // Spacing from the title to the likes
         fontWeight: 'bold', // Make it bold to stand out a little
       },
+    imageContainer: {
+        // Define the size of the container to be slightly smaller than the image
+        height: 120, // e.g., 200
+        width: 120, // e.g., 300
+        borderRadius: 10,
+        overflow: 'hidden', // This ensures that anything outside this container is clipped
+        elevation: 5
+    },
     image: {
-        width: 100,
-        height: 112,
-        flex: 2, // Adjust this value as needed to allocate space for the image
-        resizeMode: 'stretch',
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10
+        // Make the image itself larger than the container
+        height: 145, // e.g., 220
+        width: 145, // e.g., 320
+        alignSelf: 'center',
+        // Adjust these values to control which part of the image is visible
+        marginTop: -13, // e.g., -10
+        //marginLeft: -10, // e.g., -10
     },
     title: {
         color: '#691914',
@@ -244,7 +248,7 @@ export const styles = StyleSheet.create({
         borderLeftColor: '#84251E',
         borderRightColor: '#84251E',
         width: '100.35%',
-        alignSelf: 'center'
+        alignSelf: 'center',
       },
 
     selectedItemsContainer: {
@@ -261,7 +265,12 @@ export const styles = StyleSheet.create({
         shadowColor: '#000',
         height: Dimensions.get('window').height * 0.3, // Set the height to 50% of screen height
     },
-    
+    shadowContainer: {
+        shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 1,
+    shadowRadius: 3,
+      },
     selectedItemsLabel: {
         fontSize: 16,
         color: '#84251E',
@@ -292,6 +301,21 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 2,
         elevation: 5,
+    },
+    ingredients: {
+        flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', // Center the text horizontally
+    backgroundColor: '#FFFFFF',
+    marginRight: 7,
+    borderRadius: 18,
+    paddingHorizontal: 10, // Horizontal padding
+    paddingVertical: 5, // Vertical padding
+    shadowColor: '#84251E',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 5,
     },
 
     selectedItemText: {
