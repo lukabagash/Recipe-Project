@@ -1,6 +1,6 @@
 import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity, Keyboard, Dimensions, SafeAreaView } from 'react-native';
-import axios from 'axios';
+import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, } from 'react-native';
+import axios, { AxiosError } from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
@@ -28,6 +28,9 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
     setSelectedItems(prevItems => prevItems.filter(item => item !== itemToRemove));
   };
 
+  const [isLimitExceeded, setIsLimitExceeded] = useState<boolean>(false);
+
+
   const fetchAutocompleteResults = async (query: string) => {
     try {
       const response = await axios.get('https://api.spoonacular.com/food/ingredients/autocomplete', {
@@ -37,13 +40,25 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
         }
       });
       setAutocompleteResults(response.data.map((item: any) => item.name));
+      setIsLimitExceeded(false);
     } catch (error) {
-      console.error('Error fetching autocomplete results:', error);
+      console.error("API call failed:", error); // Log the error
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
+        console.log("API response status:", axiosError.response.status)
+        if (axiosError.response && axiosError.response.status === 402) {
+          setIsLimitExceeded(true);
+        }
+      }
     }
   };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    if (isLimitExceeded) {
+      // If limit is exceeded, do not make a new API call
+      return;
+    }
     fetchAutocompleteResults(query);
   };
 
@@ -76,11 +91,20 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
             placeholderTextColor="#B4887C"
             onChangeText={handleSearch}
             value={searchQuery}
+            onFocus={() => isLimitExceeded && setIsLimitExceeded(true)} // Show error message when search bar is focused
           />
           <TouchableOpacity onPress={() => navigation.navigate('Page3')}>
             <Icon name="search" size={25} color="#84251E" style={{ margin: 8 }} />
           </TouchableOpacity>
         </View>
+      
+      {isLimitExceeded && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorMessage}>
+          Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
+          </Text>
+        </View>
+      )}
       {/* items list */}
       <FlatList
       contentContainerStyle={styles.flatListContent}
@@ -95,27 +119,31 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       keyboardShouldPersistTaps="always"
       />
       
-    <View style={styles.additionalTopBorder}>
-    <Text style={styles.selectedItemsLabel}>Ingredients you have</Text>
-    </View>
-    <View style={styles.selectedItemsContainer}>
-      {selectedItems && selectedItems.map((item, index) => (
-        <View key={index} style={styles.selectedItem}>
-          <Text style={styles.selectedItemText}>{item}</Text>
-          <TouchableOpacity onPress={() => handleRemoveItem(item)} style={styles.removeItemButton}>
-            <Text style={styles.removeItemText}>X</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
-      <View style={{ height: 20 }} />
-    </View>
+            <View style={styles.additionalTopBorder}>
+              <View style={[styles.textContainer, { shadowOpacity: 0 }]}>
+                  <Text style={[styles.topLabel, { shadowOpacity: 0 }]}>Ingredients you have</Text>
+                </View>
+            </View>
+
+            <View style={styles.selectedItemsContainer}>
+                    {selectedItems && selectedItems.map((item, index) => (
+                        <View key={index} style={styles.selectedItem}>
+                            <Text style={styles.selectedItemText}>{item}</Text>
+                            <TouchableOpacity onPress={() => handleRemoveItem(item)} style={styles.removeItemButton}>
+                                <Text style={styles.removeItemText}>X</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ))}
+            </View>
+
         <View style={styles.buttonContainerP1}>
-        <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page3')}>
-          <Text style={styles.buttonTextP1}>Search</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ height: 40 }} />
-    </View>
+            <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page3')}>
+                <Text style={styles.buttonTextP1}>Search</Text>
+            </TouchableOpacity>
+        </View>
+
+        <View style={{ height: 40 }} />
+        </View>
     </SafeAreaView>
   );
 }
