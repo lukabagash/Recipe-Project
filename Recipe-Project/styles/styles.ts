@@ -389,8 +389,9 @@ lineStyle: {
 
   loadingContainer: {
     flex: 1,
-    marginTop: '35%',
-    marginLeft: '3.5%'
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: '15%'
   },
     
 });

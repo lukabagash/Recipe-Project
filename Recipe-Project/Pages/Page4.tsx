@@ -95,7 +95,7 @@ return (
           </Text>
         </View>
       </View>
-    ) : recipeDetails ? (
+    ) : recipeDetails && recipeId ? (
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }} style={{backgroundColor: '#FFFAEE'}}>
         {/* Image Container */}
         <View>
@@ -147,19 +147,17 @@ return (
     ) : (
       <View style={styles.loadingContainer}>
         <LottieView 
-          source={require('../assets/platesfalling.json')} 
+          source={require('../assets/pan2.json')} 
           autoPlay 
           loop 
-          speed={2}
-          style={{ width: 350, height: 350}} // Adjust the size as needed
+          speed={3}
+          style={{ width: 150, height: 150}}
         />
+        <Text style={[styles.descriptionTextP1, {marginRight: '12%'}]}>Loading...</Text>
       </View>
     )}
   </SafeAreaView>
 );
-
-
-
 }
 
 export default Page4;

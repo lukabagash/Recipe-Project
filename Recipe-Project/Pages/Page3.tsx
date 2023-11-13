@@ -24,6 +24,8 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
   
   const [recipes, setRecipes] = useState<any[]>([]);
   const [isLimitExceeded, setIsLimitExceeded] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
       const fetchRecipes = async () => {
@@ -45,45 +47,18 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                   setIsLimitExceeded(true);
                 }
               }
-            }
+            }finally {
+              setIsLoading(false); // Set loading to false regardless of success or failure
+          }
       };
 
       fetchRecipes();
   }, [selectedItems]);
   const [isScrollEnabled, setIsScrollEnabled] = useState(true);
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>
-        <View style={[styles.header, {backgroundColor: '#FFFAEE', paddingLeft: 8}]}>
-            <HeaderBackButton 
-              style={styles.backButton} 
-              onPress={() => navigationn.goBack()} 
-              labelVisible={false} 
-              tintColor="#691914"
-            />
-            {
-        isLimitExceeded ? (
-          
-            <Text style={[styles.headerText, {color: '#691914'}]}>0 Recipes</Text>) : (
-              <Text style={[styles.headerText, {color: '#691914'}]}>{recipes.length} Recipes</Text>
-            )}
-            
-        </View>
-        {
-        isLimitExceeded ? (
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorMessage}>
-          Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
-          </Text>
-        </View>
-      ) : recipes ? (
-        <FlatList
-            data={recipes}
-            keyExtractor={item => item.id.toString()}
-            contentContainerStyle={{ backgroundColor: '#FFFAEE' }}
-            numColumns={1}  // display 3 boxes per row
 
-            renderItem={({ item: recipe }) => (
-                <TouchableOpacity 
+  const RecipeItem = ({ recipe, onNavigate }: { recipe: any, onNavigate: (route: string, params?: any) => void }) => {
+    return (
+    <TouchableOpacity 
                   style={styles.box} 
                   onPress={() => navigation.navigate('Page4', { recipeId: recipe.id })}
                   onPressIn={() => setIsScrollEnabled(false)}
@@ -115,21 +90,56 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                     </View>
                   </View>
                 </TouchableOpacity>
+    );
+  };
+  
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>
+{isLoading ? (
+      <View style={styles.loadingContainer}>
+        <LottieView 
+          source={require('../assets/pan2.json')} 
+          autoPlay 
+          loop 
+          speed={3}
+          style={{ width: 150, height: 150}}
+        />
+        <Text style={[styles.descriptionTextP1, {marginRight: '12%'}]}>Loading...</Text>
+      </View>
+    ) : (
+      <>
+        <View style={[styles.header, {backgroundColor: '#FFFAEE', paddingLeft: 8}]}>
+            <HeaderBackButton 
+              style={styles.backButton} 
+              onPress={() => navigationn.goBack()} 
+              labelVisible={false} 
+              tintColor="#691914"
+            />
+          </View>
+        {
+        isLimitExceeded ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorMessage}>
+          Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+            data={recipes}
+            keyExtractor={item => item.id.toString()}
+            contentContainerStyle={{ backgroundColor: '#FFFAEE' }}
+            numColumns={1}  // display 3 boxes per row
 
-              )}
-        />) : (<View style={styles.loadingContainer}>
-          <LottieView 
-            source={require('../assets/platesfalling.json')} 
-            autoPlay 
-            loop 
-            speed={2}
-            style={{ width: 350, height: 350}} // Adjust the size as needed
-          />
-        </View>)
-        }
+            renderItem={({ item: recipe }) => (
+              <RecipeItem recipe={recipe} onNavigate={(route, params) => navigation.navigate(route, params)} />
+            )}
+              />
+            )}
+            </>
+          )}
+              
     </SafeAreaView>
 );
-
 }
 
 export default Page3;
