@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, SafeAreaView, LogBox } from 'react-native';
+import { View, Text, Image, ScrollView, SafeAreaView, LogBox, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { styles } from '../styles/styles';
 import { useWindowDimensions } from 'react-native';
 import HTML from 'react-native-render-html';
+import { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
+import LottieView from 'lottie-react-native';
 
 // Types and Interfaces
 interface Page4Props {}
@@ -27,6 +29,7 @@ const Page4: React.FC<Page4Props> = () => {
   const navigationn = useNavigation();
 
   const [recipeDetails, setRecipeDetails] = useState<any>(null);
+  const [isLimitExceeded, setIsLimitExceeded] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchRecipeDetails = async () => {
@@ -37,8 +40,16 @@ const Page4: React.FC<Page4Props> = () => {
           }
         });
         setRecipeDetails(response.data);
+        setIsLimitExceeded(false);
       } catch (error) {
-        console.error('Error fetching recipe details:', error);
+        console.error("API call failed:", error); // Log the error
+        const axiosError = error as AxiosError;
+        if (axiosError.response) {
+          console.log("API response status:", axiosError.response.status)
+          if (axiosError.response && axiosError.response.status === 402) {
+            setIsLimitExceeded(true);
+          }
+        }
       }
     };
 
@@ -70,63 +81,83 @@ const Page4: React.FC<Page4Props> = () => {
 };
 return (
   <SafeAreaView style={[styles.containerInstruction, styles.backgroundColor]}>
-    <ScrollView contentContainerStyle={{ paddingBottom: 20 }} style={{backgroundColor: '#FFFAEE'}}>
-      {recipeDetails ? (
-        <>
-          {/* Image Container */}
-          <View >
-            <Image
-              style={styles.recipeImage}
-              source={{ uri: recipeDetails.image }}
-            />
-            <HeaderBackButton 
-              style={styles.backButton} 
-              onPress={() => navigationn.goBack()} 
-              labelVisible={false} 
-              tintColor="black"
-            />
-          </View>
+    {isLimitExceeded ? (
+      <View>
+        <HeaderBackButton 
+          style={[styles.backButton]} 
+          onPress={() => navigationn.goBack()} 
+          labelVisible={false} 
+          tintColor="#691914"
+        />
+        <View style={[styles.errorContainer, {marginTop: 50}]}>
+          <Text style={styles.errorMessage}>
+            Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
+          </Text>
+        </View>
+      </View>
+    ) : recipeDetails ? (
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }} style={{backgroundColor: '#FFFAEE'}}>
+        {/* Image Container */}
+        <View>
+          <Image
+            style={styles.recipeImage}
+            source={{ uri: recipeDetails.image }}
+          />
+          <HeaderBackButton 
+            style={styles.backButton} 
+            onPress={() => navigationn.goBack()} 
+            labelVisible={false} 
+            tintColor="black"
+          />
+        </View>
 
-          {/* Title and Summary */}
-          <View style={[styles.recipeContainer, styles.spaceBelow]}>
-            <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
-            <View style={styles.lineStyle} />
-            {recipeDetails.summary && (
-                <HTML 
-                  source={{ html: recipeDetails.summary.split("Users who liked this recipe also liked")[0]}} 
-                  contentWidth={width}
-                  baseStyle={styles.htmlBaseFontStyle}
-                  tagsStyles={htmlTagStyles}
-                />
-              )}
-          </View>
-
-          {/* Ingredients Container */}
-          <View style={[styles.recipeContainer, styles.spaceBelow]}>
-            {recipeDetails.extendedIngredients.map((ingredient: any) => (
-              <Text key={ingredient.id} style={styles.ingredientText}>
-                {ingredient.name}: {ingredient.amount} {ingredient.unit}
-              </Text>
-            ))}
-          </View>
-
-          {/* Instructions Container */}
-          <View style={[styles.recipeContainer]}>
+        {/* Title and Summary */}
+        <View style={[styles.recipeContainer, styles.spaceBelow]}>
+          <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
+          <View style={styles.lineStyle} />
+          {recipeDetails.summary && (
             <HTML 
-                source={{ html: recipeDetails.instructions }} 
-                contentWidth={width}
-                baseStyle={styles.htmlBaseFontStyle}
-                tagsStyles={htmlTagStyles}
+              source={{ html: recipeDetails.summary.split("Users who liked this recipe also liked")[0]}} 
+              contentWidth={width}
+              baseStyle={styles.htmlBaseFontStyle}
+              tagsStyles={htmlTagStyles}
             />
-          </View>
+          )}
+        </View>
 
-        </>
-      ) : (
-        <Text style={styles.loadingText}>Loading...</Text>
-      )}
-    </ScrollView>
+        {/* Ingredients Container */}
+        <View style={[styles.recipeContainer, styles.spaceBelow]}>
+        {recipeDetails.extendedIngredients.map((ingredient: any, index: number) => (
+  <Text key={`${ingredient.id}-${index}`} style={styles.ingredientText}>
+    {ingredient.name}: {ingredient.amount} {ingredient.unit}
+  </Text>
+))}
+        </View>
+
+        {/* Instructions Container */}
+        <View style={[styles.recipeContainer]}>
+          <HTML 
+            source={{ html: recipeDetails.instructions }} 
+            contentWidth={width}
+            baseStyle={styles.htmlBaseFontStyle}
+            tagsStyles={htmlTagStyles}
+          />
+        </View>
+      </ScrollView>
+    ) : (
+      <View style={styles.loadingContainer}>
+        <LottieView 
+          source={require('../assets/platesfalling.json')} 
+          autoPlay 
+          loop 
+          speed={2}
+          style={{ width: 350, height: 350}} // Adjust the size as needed
+        />
+      </View>
+    )}
   </SafeAreaView>
 );
+
 
 
 }

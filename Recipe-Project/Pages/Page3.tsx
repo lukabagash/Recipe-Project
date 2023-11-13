@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { DataContext } from '../DataProvider/DataProvider';
 import { View, Text, Image, FlatList, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { StackNavigationProp } from '@react-navigation/stack';
+import LottieView from 'lottie-react-native';
 
 
 interface Page3Props {
@@ -22,6 +23,7 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
 
   
   const [recipes, setRecipes] = useState<any[]>([]);
+  const [isLimitExceeded, setIsLimitExceeded] = useState<boolean>(false);
 
   useEffect(() => {
       const fetchRecipes = async () => {
@@ -33,9 +35,17 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                   }
               });
               setRecipes(response.data);
-          } catch (error) {
-              console.error('Error fetching recipes:', error);
-          }
+              setIsLimitExceeded(false);
+            } catch (error) {
+              console.error("API call failed:", error); // Log the error
+              const axiosError = error as AxiosError;
+              if (axiosError.response) {
+                console.log("API response status:", axiosError.response.status)
+                if (axiosError.response && axiosError.response.status === 402) {
+                  setIsLimitExceeded(true);
+                }
+              }
+            }
       };
 
       fetchRecipes();
@@ -50,8 +60,22 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
               labelVisible={false} 
               tintColor="#691914"
             />
-            <Text style={[styles.headerText, {color: '#691914'}]}>{recipes.length} Recipes</Text>
+            {
+        isLimitExceeded ? (
+          
+            <Text style={[styles.headerText, {color: '#691914'}]}>0 Recipes</Text>) : (
+              <Text style={[styles.headerText, {color: '#691914'}]}>{recipes.length} Recipes</Text>
+            )}
+            
         </View>
+        {
+        isLimitExceeded ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorMessage}>
+          Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
+          </Text>
+        </View>
+      ) : recipes ? (
         <FlatList
             data={recipes}
             keyExtractor={item => item.id.toString()}
@@ -93,7 +117,16 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                 </TouchableOpacity>
 
               )}
-        />
+        />) : (<View style={styles.loadingContainer}>
+          <LottieView 
+            source={require('../assets/platesfalling.json')} 
+            autoPlay 
+            loop 
+            speed={2}
+            style={{ width: 350, height: 350}} // Adjust the size as needed
+          />
+        </View>)
+        }
     </SafeAreaView>
 );
 

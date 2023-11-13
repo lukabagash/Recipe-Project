@@ -227,7 +227,7 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         marginTop: 20,
-        color: '#7f8c8d',
+        color: '#84251E',
       },
       htmlBaseFontStyle: {
         fontSize: 16,
@@ -385,6 +385,12 @@ lineStyle: {
     alignSelf: 'flex-start',
     marginVertical: 10, // Adjust the vertical spacing as needed
     marginBottom: 20
+  },
+
+  loadingContainer: {
+    flex: 1,
+    marginTop: '35%',
+    marginLeft: '3.5%'
   },
     
 });
