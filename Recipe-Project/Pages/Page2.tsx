@@ -1,5 +1,5 @@
 import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, StyleSheet, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, } from 'react-native';
+import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView} from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -20,7 +20,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
   const context = useContext(DataContext);
   if (!context) {
       throw new Error("Page2 must be used within a DataProvider"); 
-      
+  
   }
   const { selectedItems, setSelectedItems } = context;
 
@@ -108,7 +108,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       {/* items list */}
       <FlatList
       contentContainerStyle={styles.flatListContent}
-      style={{ maxHeight: Dimensions.get('window').height * 0.4 }} // Set the maximum height to 50% of screen height
+      style={{ height: Dimensions.get('window').height * 0.08 }} // Set the maximum height to 50% of screen height
       data={autocompleteResults}
       keyExtractor={(item) => item}
       renderItem={({ item }) => (
@@ -118,23 +118,29 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       )}
       keyboardShouldPersistTaps="always"
       />
-      
             <View style={styles.additionalTopBorder}>
               <View style={[styles.textContainer, { shadowOpacity: 0 }]}>
                   <Text style={[styles.topLabel, { shadowOpacity: 0 }]}>Ingredients you have</Text>
                 </View>
             </View>
-
-            <View style={styles.selectedItemsContainer}>
-                    {selectedItems && selectedItems.map((item, index) => (
-                        <View key={index} style={styles.selectedItem}>
-                            <Text style={styles.selectedItemText}>{item}</Text>
-                            <TouchableOpacity onPress={() => handleRemoveItem(item)} style={styles.removeItemButton}>
-                                <Text style={styles.removeItemText}>X</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ))}
+            <View style={styles.anotherBorder}>
+            
             </View>
+            <FlatList
+            contentContainerStyle={styles.selectedItemsContainer}
+            data={selectedItems}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => (
+                <View style={styles.selectedItem}>
+                    <Text style={styles.selectedItemText}>{item}</Text>
+                    <TouchableOpacity onPress={() => handleRemoveItem(item)} style={styles.removeItemButton}>
+                        <Text style={styles.removeItemText}>X</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+        />
+
+
 
         <View style={styles.buttonContainerP1}>
             <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page3')}>

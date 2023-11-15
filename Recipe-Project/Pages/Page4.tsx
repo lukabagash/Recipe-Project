@@ -114,10 +114,10 @@ return (
         {/* Title and Summary */}
         <View style={[styles.recipeContainer, styles.spaceBelow]}>
           <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
-          <View style={styles.lineStyle} />
+          <View style={[styles.lineStyle,{marginBottom: 20}]} />
           {recipeDetails.summary && (
             <HTML 
-              source={{ html: recipeDetails.summary.split("Users who liked this recipe also liked")[0]}} 
+              source={{ html: recipeDetails.summary}} 
               contentWidth={width}
               baseStyle={styles.htmlBaseFontStyle}
               tagsStyles={htmlTagStyles}
@@ -127,19 +127,23 @@ return (
 
         {/* Ingredients Container */}
         <View style={[styles.recipeContainer, styles.spaceBelow]}>
+        <Text style={styles.title4}>Ingredient</Text>
+        <View style={[styles.lineStyle, {marginBottom: 20}]} />
         {recipeDetails.extendedIngredients.map((ingredient: any, index: number) => (
-  <Text key={`${ingredient.id}-${index}`} style={styles.ingredientText}>
-    {ingredient.name}: {ingredient.amount} {ingredient.unit}
-  </Text>
-))}
+        <Text key={`${ingredient.id}-${index}`} style={styles.ingredientText}>
+          {ingredient.name}: {ingredient.amount} {ingredient.unit}
+        </Text>
+        ))}
+        
         </View>
-
         {/* Instructions Container */}
-        <View style={[styles.recipeContainer]}>
+        <View style={[styles.instContainer]}>
+          <Text style={[styles.title4, {marginLeft: 15, marginTop: 15}]}>Instruction</Text>
+          <View style={[styles.lineStyle, {width: '92%', alignSelf: 'center'}]} />
           <HTML 
             source={{ html: recipeDetails.instructions }} 
             contentWidth={width}
-            baseStyle={styles.htmlBaseFontStyle}
+            baseStyle={styles.htmlBaseFontStyle2}
             tagsStyles={htmlTagStyles}
           />
         </View>
