@@ -135,6 +135,7 @@ export const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
     },
+
     box: {
         width: '97.8%', // approx for 2 boxes per row
         marginVertical: 5,
@@ -144,6 +145,7 @@ export const styles = StyleSheet.create({
         borderColor: '#FFFDF7', // Set the border color
         elevation: 5, // This adds shadow on Android
     },
+
     likes: {
         fontSize: 14,
         //color: '#FFFFFF', // A neutral color for the text
@@ -158,6 +160,7 @@ export const styles = StyleSheet.create({
         overflow: 'hidden', // This ensures that anything outside this container is clipped
         elevation: 5
     },
+
     image: {
         // Make the image itself larger than the container
         height: 145, // e.g., 220
@@ -167,17 +170,20 @@ export const styles = StyleSheet.create({
         marginTop: -13, // e.g., -10
         //marginLeft: -10, // e.g., -10
     },
+
     title: {
         color: '#691914',
         fontWeight: 'bold',
         fontSize: 17,
     },
+
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         height: 50,  // Or any other height you prefer
     },
+
     headerText: {
         position: 'absolute',
         left: 0,
@@ -187,11 +193,13 @@ export const styles = StyleSheet.create({
         
         color: '#691914',  // Or any other color you prefer
     },
+
     containerInstruction: {
         flex: 1,
         backgroundColor: '#f9f9f9',
     },
-      recipeContainer: {
+
+    recipeContainer: {
         borderRadius: 10,
         backgroundColor: '#FFFDF7',
         padding: 15,
@@ -200,46 +208,79 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 3,
         elevation: 3,
-      },
-      recipeImage: {
+    },
+
+    instContainer: {
+        borderRadius: 10,
+        backgroundColor: '#FFFDF7',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 3,
+    },
+
+    recipeImage: {
         width: '100%',
         height: 220,
         borderRadius: 10,
         marginBottom: 15,
-      },
-      recipeTitle: {
+    },
+
+    recipeTitle: {
         fontSize: 26,
         fontWeight: 'bold',
         marginBottom: 7,
-        color: '#2c3e50',
-      },
-      ingredientsList: {
+        color: '#84251E',
+    },
+
+    ingredientsList: {
         marginTop: 20,
         borderTopWidth: 1,
         borderTopColor: '#ecf0f1',
         paddingTop: 15,
-      },
-      ingredientText: {
+    },
+
+    ingredientText: {
         fontSize: 18,
         marginBottom: 8,
-        color: '#34495e',
-      },
-      loadingText: {
+        color: '#691914',
+    },
+
+    instructionText: {
+        fontSize: 13,
+        marginRight: 8,
+        color: '#691914',
+    },
+
+    loadingText: {
         fontSize: 20,
         textAlign: 'center',
         marginTop: 20,
         color: '#84251E',
-      },
-      htmlBaseFontStyle: {
+    },
+
+    htmlBaseFontStyle: {
         fontSize: 16,
-        color: '#34495e',
+        marginRight: 8,
+        color: '#691914',
+        width: '100%',
+    },
+
+    htmlBaseFontStyle2: {
+        fontSize: 16,
+        marginRight: 8,
+        color: '#691914',
+        width: '92%',
+        marginLeft: 15
     },
     
-      backButton: {
+    backButton: {
         position: 'absolute', // Set the back button to absolute position
         zIndex: 1, // Ensure the back button is on top
         marginLeft: 6
     },
+
     errorContainer: {
         alignItems: 'center',
         alignSelf: 'center',
@@ -270,6 +311,14 @@ export const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 4,
       },
+    anotherBorder: {
+        flexWrap: 'wrap',
+        borderBottomWidth: 4,
+        borderBottomColor: '#84251E',
+        padding: 2,
+        width: '90%',
+        alignSelf: 'center',
+    },
 
     textContainer: {
         backgroundColor: '#FFFAEE',
@@ -300,20 +349,18 @@ export const styles = StyleSheet.create({
         flexWrap: 'wrap',
         alignItems: 'center',
         padding: 4,
-        borderTopWidth: 4,
-        borderTopColor: '#84251E',
         TopLeftRadius: 10,
         TopRightRadius: 10,
         margin: 15,
         marginVertical: 5,
         shadowColor: '#000',
-        height: Dimensions.get('window').height * 0.3, // Set the height to 50% of screen height
+        maxHeight: Dimensions.get('window').height * 0.1, // Set the height to 50% of screen height
     },
     shadowContainer: {
         shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 1,
-    shadowRadius: 3,
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 1,
+        shadowRadius: 3,
       },
     selectedItemsLabel: {
         fontSize: 16,
@@ -386,7 +433,6 @@ lineStyle: {
     width: '100%',
     alignSelf: 'flex-start',
     marginVertical: 10, // Adjust the vertical spacing as needed
-    marginBottom: 20
   },
 
   loadingContainer: {
@@ -396,4 +442,10 @@ lineStyle: {
     marginBottom: '15%'
   },
     
+  title4: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#84251E',
+  }
+
 });
