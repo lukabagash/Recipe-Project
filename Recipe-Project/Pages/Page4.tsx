@@ -38,7 +38,7 @@ const Page4: React.FC<Page4Props> = () => {
           params: {
             apiKey: '383052fef40e45ab8479cb6f462a8077'
           }
-        });
+        }); 
         setRecipeDetails(response.data);
         setIsLimitExceeded(false);
       } catch (error) {
@@ -87,7 +87,7 @@ return (
           style={[styles.backButton]} 
           onPress={() => navigationn.goBack()} 
           labelVisible={false} 
-          tintColor="#691914"
+          tintColor="#84251E"
         />
         <View style={[styles.errorContainer, {marginTop: 50}]}>
           <Text style={styles.errorMessage}>

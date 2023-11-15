@@ -138,7 +138,7 @@ export const styles = StyleSheet.create({
     box: {
         width: '97.8%', // approx for 2 boxes per row
         marginVertical: 5,
-        margin: 3,
+        margin: 10,
         backgroundColor: '#FFFAEE',
         borderRadius: 10,
         borderColor: '#FFFDF7', // Set the border color
@@ -146,9 +146,9 @@ export const styles = StyleSheet.create({
     },
     likes: {
         fontSize: 14,
-        color: '#8B3E3A', // A neutral color for the text
+        //color: '#FFFFFF', // A neutral color for the text
         marginTop: 4, // Spacing from the title to the likes
-        fontWeight: 'bold', // Make it bold to stand out a little
+        //fontWeight: 'bold', // Make it bold to stand out a little
       },
     imageContainer: {
         // Define the size of the container to be slightly smaller than the image
@@ -184,7 +184,8 @@ export const styles = StyleSheet.create({
         right: 0,
         textAlign: 'center',
         fontSize: 18,
-        color: '#333',  // Or any other color you prefer
+        
+        color: '#691914',  // Or any other color you prefer
     },
     containerInstruction: {
         flex: 1,
@@ -237,6 +238,7 @@ export const styles = StyleSheet.create({
       backButton: {
         position: 'absolute', // Set the back button to absolute position
         zIndex: 1, // Ensure the back button is on top
+        marginLeft: 6
     },
     errorContainer: {
         alignItems: 'center',

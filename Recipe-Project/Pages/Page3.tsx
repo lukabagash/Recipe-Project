@@ -74,7 +74,7 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                         </View>
                       </View>
 
-                    <View style={{ flex: 3, marginLeft: 13, justifyContent: 'center', position: 'relative', paddingRight: 13 }}>
+                    <View style={{ flex: 3, marginLeft: 10, justifyContent: 'center', position: 'relative', paddingRight: 13 }}>
                         <Text 
                           style={[styles.title, {paddingBottom: 2 }]} // Assign flex value as needed
                         >
@@ -82,11 +82,31 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                         </Text>
 
             
-                        <Text style={[styles.likes]}>
+                        <Text style={[styles.likes, {fontWeight: 'bold', color: '#8B3E3A'}]}>
                         {recipe.missedIngredients.length} more ingredients needed 
                         </Text>
               
-                        <Text style={[styles.likes, { position: 'absolute', bottom: 0, right: 10 }]}>{recipe.likes} likes</Text>
+                        <View style={{
+                          //borderWidth: 1, // Make the border more subtle
+                          //borderColor: '#8B3E3A', // Keep a neutral border color
+                          borderRadius: 5, // Smaller rounded corners
+                          paddingHorizontal: 5, // Minimal horizontal padding
+                          paddingVertical: 2, // Minimal vertical padding
+                          paddingBottom: 3,
+                          marginTop: 5, // Adjust margin as needed
+                          backgroundColor: '#ECA457', // Neutral background color
+                          alignSelf: 'flex-start', // Size to content
+                          justifyContent: 'center', // Vertically center content
+                          alignItems: 'center', // Horizontally center content
+                        }}>
+                          <Text style={[styles.likes, {
+                            fontSize: 14, // Adjust font size as needed
+                            color: '#8B3E3A',
+                            lineHeight: 14
+                          }]}>
+                            {recipe.likes} likes
+                          </Text>
+                        </View>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -115,6 +135,7 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
               labelVisible={false} 
               tintColor="#691914"
             />
+            <Text style={styles.headerText}>{recipes.length} Recipes</Text>
           </View>
         {
         isLimitExceeded ? (
