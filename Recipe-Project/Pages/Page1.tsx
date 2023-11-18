@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -11,6 +11,7 @@ interface Page1Props {
 const Page1: React.FC<Page1Props> = ({navigation}) => {
   return (
     <View style={styles.defaultPage}>
+      <StatusBar backgroundColor="#FFFAEE" barStyle="dark-content" />
       <View style={styles.spacerP2}></View>
       <Image source={require('../assets/recipe.png')} style={{ width: 400, height: 400,position: 'relative'}} />
       <View style={styles.spacerP1}></View>

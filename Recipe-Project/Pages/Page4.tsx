@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, SafeAreaView, LogBox } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, SafeAreaView, LogBox, StatusBar } from 'react-native';
 import axios from 'axios';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { styles } from '../styles/styles';
@@ -8,6 +8,8 @@ import HTML from 'react-native-render-html';
 import { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 // Types and Interfaces
 interface Page4Props {}
@@ -81,14 +83,12 @@ const Page4: React.FC<Page4Props> = () => {
 };
 return (
   <SafeAreaView style={[styles.containerInstruction, styles.backgroundColor]}>
+    <StatusBar backgroundColor="#FFFAEE" barStyle="dark-content" />
     {isLimitExceeded ? (
       <View>
-        <HeaderBackButton 
-          style={[styles.backButton]} 
-          onPress={() => navigationn.goBack()} 
-          labelVisible={false} 
-          tintColor="#691914"
-        />
+        <TouchableOpacity onPress={() => navigationn.goBack()} style={{ paddingTop: 0, paddingLeft: 10 }}>
+              <Icon name="arrow-back" size={30} color="#84251E" />
+          </TouchableOpacity>
         <View style={[styles.errorContainer, {marginTop: 50}]}>
           <Text style={styles.errorMessage}>
             Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.

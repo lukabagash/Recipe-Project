@@ -1,5 +1,5 @@
 import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView} from 'react-native';
+import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar} from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import { HeaderBackButton } from '@react-navigation/elements';
 import { DataContext } from '../DataProvider/DataProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { BoxShadow } from 'react-native-shadow';
+import { ScreenWidth } from 'react-native-elements/dist/helpers';
 
 interface Page2Props {
   navigation: StackNavigationProp<any>;
@@ -68,17 +70,26 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
     Keyboard.dismiss(); // Dismiss the keyboard
   };
 
+  const shadowOpt = {
+    width: ScreenWidth, // Width of the view where you're applying the shadow
+    height: 37, // Height of the view where you're applying the shadow
+    color: "#84251E", // Shadow color
+    border: 13, // Border radius
+    radius: 10, // Blur radius
+    opacity: 0.13, // Shadow opacity
+    x: 0, // Offset x
+    y: -2, // Offset y
+    style: { marginVertical: 3 } // Additional style for the shadow
+  };
+
   return (
     <SafeAreaView style={[{ flex: 1 }, styles.backgroundColor]}>
     <View style={[{ flex: 1, justifyContent: 'flex-end',}, styles.backgroundColor]}>
-
+    <StatusBar backgroundColor="#FFFAEE" barStyle="dark-content" />
     <View style={{ paddingLeft: 5 }}> 
-    <HeaderBackButton 
-              onPress={() => navigationn.goBack()} 
-              labelVisible={false} 
-              tintColor="#84251E"
-            />
-            
+            <TouchableOpacity onPress={() => navigationn.goBack()} style={{ paddingTop: 3, paddingLeft: 10 }}>
+              <Icon name="arrow-back" size={30} color="#84251E" />
+              </TouchableOpacity>
             </View>
         {/* search bar */}
         <View style={styles.searchContainer}>
@@ -115,11 +126,14 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       )}
       keyboardShouldPersistTaps="always"
       />
+          <BoxShadow setting={shadowOpt}>
             <View style={styles.additionalTopBorder}>
-              <View style={[styles.textContainer, { shadowOpacity: 0 }]}>
-                  <Text style={[styles.topLabel, { shadowOpacity: 0 }]}>Ingredients you have</Text>
+              <View style={[styles.textContainer]}>
+                  <Text style={[styles.topLabel]}>Ingredients you have</Text>
                 </View>
             </View>
+            </BoxShadow>
+            
             <View style={styles.anotherBorder}>
             
             </View>
