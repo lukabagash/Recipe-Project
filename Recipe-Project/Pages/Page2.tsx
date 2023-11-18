@@ -1,5 +1,5 @@
 import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar, TouchableWithoutFeedback} from 'react-native';
+import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar, TouchableWithoutFeedback, KeyboardAvoidingView, Platform} from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
