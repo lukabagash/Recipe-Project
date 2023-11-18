@@ -93,7 +93,7 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                         </Text>
               
                         <View style={{
-                          borderWidth: 1, // Make the border more subtle
+                          borderWidth: 0, // Make the border more subtle
                           borderColor: '#8B3E3A', // Keep a neutral border color
                           borderRadius: 5, // Smaller rounded corners
                           paddingHorizontal: 5, // Minimal horizontal padding
