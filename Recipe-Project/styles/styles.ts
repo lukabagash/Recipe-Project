@@ -1,4 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
+
 
 export const styles = StyleSheet.create({
     defaultPage: {
@@ -305,12 +306,20 @@ export const styles = StyleSheet.create({
     additionalTopBorder: {
         width: '100.5%',
         alignSelf: 'center',
-        shadowColor: '#84251E',
-        shadowOffset: { width: 0, height: -4 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 4,
+        ...Platform.select({
+          ios: {
+            shadowColor: '#84251E',
+            shadowOffset: { width: 0, height: -4 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+          },
+          android: {
+            elevation: 20,
+            // You can add additional Android-specific styles here
+          },
+        }),
       },
+
     anotherBorder: {
         flexWrap: 'wrap',
         borderBottomWidth: 4,
@@ -333,7 +342,7 @@ export const styles = StyleSheet.create({
         borderRightColor: '#84251E',
         width: '100%',
         alignSelf: 'center',
-
+        height: '113%'
     },
     topLabel: {
         fontSize: 16,
@@ -343,6 +352,7 @@ export const styles = StyleSheet.create({
         marginBottom: 5,  // Adjust for spacing between the label and the container
         marginLeft: 16,    // Optional: for some left spacing
         marginTop: 15,
+        height: 50
     },
     selectedItemsContainer: {
         flexDirection: 'row',

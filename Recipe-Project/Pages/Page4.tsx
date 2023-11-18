@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, SafeAreaView, LogBox } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, SafeAreaView, LogBox, StatusBar } from 'react-native';
 import axios from 'axios';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { styles } from '../styles/styles';
@@ -9,6 +9,8 @@ import { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import { HeaderBackButton } from '@react-navigation/elements';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 // Types and Interfaces
 interface Page4Props {}
@@ -20,6 +22,7 @@ interface RouteParams {
 type RootStackParamList = {
   Page4: RouteParams;
 };
+
 LogBox.ignoreLogs(['Warning: Encountered two children with the same key, `1001`.']);
 
 const Page4: React.FC<Page4Props> = () => {
@@ -38,7 +41,7 @@ const Page4: React.FC<Page4Props> = () => {
           params: {
             apiKey: '383052fef40e45ab8479cb6f462a8077'
           }
-        }); 
+        });
         setRecipeDetails(response.data);
         setIsLimitExceeded(false);
       } catch (error) {
@@ -81,14 +84,12 @@ const Page4: React.FC<Page4Props> = () => {
 };
 return (
   <SafeAreaView style={[styles.containerInstruction, styles.backgroundColor]}>
+    <StatusBar backgroundColor="#FFFAEE" barStyle="dark-content" />
     {isLimitExceeded ? (
       <View>
-        <HeaderBackButton 
-          style={[styles.backButton]} 
-          onPress={() => navigationn.goBack()} 
-          labelVisible={false} 
-          tintColor="#84251E"
-        />
+        <TouchableOpacity onPress={() => navigationn.goBack()} style={{ paddingTop: 0, paddingLeft: 10 }}>
+              <Icon name="arrow-back" size={30} color="#84251E" />
+          </TouchableOpacity>
         <View style={[styles.errorContainer, {marginTop: 50}]}>
           <Text style={styles.errorMessage}>
             Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
@@ -134,13 +135,13 @@ return (
           {ingredient.name}: {ingredient.amount} {ingredient.unit}
         </Text>
         ))}
-        
+
         </View>
         {/* Instructions Container */}
-        <View style={[styles.instContainer]}>
+        <View style={[styles.instContainer, { paddingBottom: 20 }]}>
           <Text style={[styles.title4, {marginLeft: 15, marginTop: 15}]}>Instruction</Text>
-          <View style={[styles.lineStyle, {width: '92%', alignSelf: 'center'}]} />
-          <HTML 
+          <View style={[styles.lineStyle, {width: '92%', alignSelf: 'center'}]}/>
+          <HTML
             source={{ html: recipeDetails.instructions }} 
             contentWidth={width}
             baseStyle={styles.htmlBaseFontStyle2}

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import axios, { AxiosError } from 'axios';
 import { DataContext } from '../DataProvider/DataProvider';
-import { View, Text, Image, FlatList, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, FlatList, SafeAreaView, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { StackNavigationProp } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/Ionicons';
 import LottieView from 'lottie-react-native';
-
 
 interface Page3Props {
   navigation : StackNavigationProp<any>;
@@ -113,7 +113,8 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>  
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>
+    <StatusBar backgroundColor="#FFFAEE" barStyle="dark-content" />
 {isLoading ? (
       <View style={styles.loadingContainer}>
         <LottieView 
@@ -128,12 +129,9 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
     ) : (
       <>
         <View style={[styles.header, {backgroundColor: '#FFFAEE', paddingLeft: 8}]}>
-            <HeaderBackButton 
-              style={styles.backButton} 
-              onPress={() => navigationn.goBack()} 
-              // labelVisible={false} 
-              tintColor="#691914"
-            />
+        <TouchableOpacity onPress={() => navigationn.goBack()} style={{ paddingTop: 0, paddingLeft: 10 }}>
+              <Icon name="arrow-back" size={30} color="#84251E" />
+              </TouchableOpacity>
             <Text style={styles.headerText}>{recipes.length} Recipes</Text>
           </View>
         {
