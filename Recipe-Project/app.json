@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Recipe-Project",
-    "slug": "Recipe-Project",
+    "name": "Pantry Chef",
+    "slug": "Pantry-Chef",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
