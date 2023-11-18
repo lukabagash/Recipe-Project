@@ -8,7 +8,6 @@ import { DataContext } from '../DataProvider/DataProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
 interface Page2Props {
   navigation: StackNavigationProp<any>;
 }
@@ -20,7 +19,6 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
   const context = useContext(DataContext);
   if (!context) {
       throw new Error("Page2 must be used within a DataProvider"); 
-  
   }
   const { selectedItems, setSelectedItems } = context;
 
@@ -29,7 +27,6 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
   };
 
   const [isLimitExceeded, setIsLimitExceeded] = useState<boolean>(false);
-
 
   const fetchAutocompleteResults = async (query: string) => {
     try {
@@ -101,7 +98,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       {isLimitExceeded && (
         <View style={styles.errorContainer}>
           <Text style={styles.errorMessage}>
-          Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
+            Oops! It looks like we've reached our maximum number of searches for now. Please try again in a little while.
           </Text>
         </View>
       )}
@@ -139,8 +136,6 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
                 </View>
             )}
         />
-
-
 
         <View style={styles.buttonContainerP1}>
             <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page3')}>
