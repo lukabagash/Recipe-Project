@@ -1,12 +1,12 @@
 import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar} from 'react-native';
+import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar, TouchableWithoutFeedback} from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { DataContext } from '../DataProvider/DataProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { BoxShadow } from 'react-native-shadow';
 import { ScreenWidth } from 'react-native-elements/dist/helpers';
 
@@ -85,11 +85,12 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
 
   return (
     <SafeAreaView style={[{ flex: 1 }, styles.backgroundColor]}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={[{ flex: 1, justifyContent: 'flex-end',}, styles.backgroundColor]}>
     <StatusBar backgroundColor="#FFFAEE" barStyle="dark-content" />
     <View style={{ paddingLeft: 5 }}> 
             <TouchableOpacity onPress={() => navigationn.goBack()} style={{ paddingTop: 3, paddingLeft: 10 }}>
-              <Icon name="arrow-back" size={30} color="#84251E" />
+              <Icon name="left" size={30} color="#84251E" />
               </TouchableOpacity>
             </View>
         {/* search bar */}
@@ -103,7 +104,9 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
             onFocus={() => isLimitExceeded && setIsLimitExceeded(true)} // Show error message when search bar is focused
           />
           <TouchableOpacity onPress={() => navigation.navigate('Page3')}>
-            <Icon name="search" size={25} color="#84251E" style={{ margin: 8 }} />
+            <Icon name="search1" size={25} color="#84251E" style={{ textShadowColor: '#84251E',
+        textShadowOffset: {width: 0, height: 1},
+        textShadowRadius: 1, margin: 8 }} />
           </TouchableOpacity>
         </View>
       
@@ -130,7 +133,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
           <BoxShadow setting={shadowOpt}>
             <View style={styles.additionalTopBorder}>
               <View style={[styles.textContainer]}>
-                  <Text style={[styles.topLabel]}>Ingredients you have</Text>
+                  <Text style={[styles.topLabel]}>My Pantry</Text>
                 </View>
             </View>
             </BoxShadow>
@@ -160,6 +163,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
 
         <View style={{ height: 40 }} />
         </View>
+        </TouchableWithoutFeedback>
     </SafeAreaView>
   );
 }

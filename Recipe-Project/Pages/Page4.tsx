@@ -9,7 +9,7 @@ import { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import { HeaderBackButton } from '@react-navigation/elements';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 
 // Types and Interfaces
@@ -104,18 +104,18 @@ return (
             style={styles.recipeImage}
             source={{ uri: recipeDetails.image }}
           />
-          <HeaderBackButton 
-            style={styles.backButton} 
-            onPress={() => navigationn.goBack()} 
-            labelVisible={false} 
-            tintColor="black"
-          />
+          <TouchableOpacity 
+        style={[styles.backButton, {paddingTop: 7, paddingLeft: 6}]} 
+        onPress={() => navigationn.goBack()}
+      >
+        <Icon name="left" size={30} color="#84251E" />
+      </TouchableOpacity>
         </View>
 
         {/* Title and Summary */}
         <View style={[styles.recipeContainer, styles.spaceBelow]}>
           <Text style={styles.recipeTitle}>{recipeDetails.title}</Text>
-          <View style={[styles.lineStyle,{marginBottom: 20}]} />
+          <View style={[styles.lineStyle,{marginBottom: 20, marginTop: 5}]} />
           {recipeDetails.summary && (
             <HTML 
               source={{ html: recipeDetails.summary}} 
@@ -128,7 +128,7 @@ return (
 
         {/* Ingredients Container */}
         <View style={[styles.recipeContainer, styles.spaceBelow]}>
-        <Text style={styles.title4}>Ingredient</Text>
+        <Text style={styles.title4}>Ingredients</Text>
         <View style={[styles.lineStyle, {marginBottom: 20}]} />
         {recipeDetails.extendedIngredients.map((ingredient: any, index: number) => (
         <Text key={`${ingredient.id}-${index}`} style={styles.ingredientText}>
