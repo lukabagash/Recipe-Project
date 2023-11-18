@@ -1,5 +1,5 @@
-import React, {useContext, useState } from 'react';
-import { View, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar, TouchableWithoutFeedback, KeyboardAvoidingView, Platform} from 'react-native';
+import React, {useContext, useState, useEffect } from 'react';
+import { View, Platform, FlatList, TextInput, Text, TouchableOpacity, Keyboard, Dimensions, SafeAreaView, StatusBar, TouchableWithoutFeedback,} from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -83,10 +83,33 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
     style: { marginVertical: 3 } // Additional style for the shadow
   };
 
+  
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      const keyboardDidShowListener = Keyboard.addListener(
+        'keyboardDidShow',
+        () => setKeyboardVisible(true)
+      );
+      const keyboardDidHideListener = Keyboard.addListener(
+        'keyboardDidHide',
+        () => setKeyboardVisible(false)
+      );
+
+      return () => {
+        keyboardDidShowListener.remove();
+        keyboardDidHideListener.remove();
+      };
+    }
+  }, []);
+
+  
+
   return (
     <SafeAreaView style={[{ flex: 1 }, styles.backgroundColor]}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-    <View style={[{ flex: 1, justifyContent: 'flex-end',}, styles.backgroundColor]}>
+    <View style={[{ flex: 1, justifyContent: 'flex-end'}, styles.backgroundColor]}>
     <StatusBar backgroundColor="#FFFAEE" barStyle="dark-content" />
     <View style={{ paddingLeft: 5 }}> 
             <TouchableOpacity onPress={() => navigationn.goBack()} style={{ paddingTop: 3, paddingLeft: 10 }}>
@@ -120,7 +143,7 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
       {/* items list */}
       <FlatList
       contentContainerStyle={styles.flatListContent}
-      style={{ height: Dimensions.get('window').height * 0.08 }} // Set the maximum height to 50% of screen height
+      style={{ height: keyboardVisible ? '100%' : Dimensions.get('window').height * 0.02}} // Set the maximum height to 50% of screen height
       data={autocompleteResults}
       keyExtractor={(item) => item}
       renderItem={({ item }) => (
@@ -155,13 +178,16 @@ const Page2: React.FC<Page2Props> = ({navigation}) => {
             )}
         />
 
+      {!keyboardVisible && (
         <View style={styles.buttonContainerP1}>
-            <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page3')}>
-                <Text style={styles.buttonTextP1}>Search</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonP1} onPress={() => navigation.navigate('Page3')}>
+            <Text style={styles.buttonTextP1}>Search</Text>
+          </TouchableOpacity>
         </View>
-
+      )}
+{(!keyboardVisible) && (
         <View style={{ height: 40 }} />
+        )}
         </View>
         </TouchableWithoutFeedback>
     </SafeAreaView>
