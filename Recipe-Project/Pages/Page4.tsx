@@ -20,6 +20,7 @@ interface RouteParams {
 type RootStackParamList = {
   Page4: RouteParams;
 };
+
 LogBox.ignoreLogs(['Warning: Encountered two children with the same key, `1001`.']);
 
 const Page4: React.FC<Page4Props> = () => {
@@ -38,7 +39,7 @@ const Page4: React.FC<Page4Props> = () => {
           params: {
             apiKey: '383052fef40e45ab8479cb6f462a8077'
           }
-        }); 
+        });
         setRecipeDetails(response.data);
         setIsLimitExceeded(false);
       } catch (error) {
@@ -87,7 +88,7 @@ return (
           style={[styles.backButton]} 
           onPress={() => navigationn.goBack()} 
           labelVisible={false} 
-          tintColor="#84251E"
+          tintColor="#691914"
         />
         <View style={[styles.errorContainer, {marginTop: 50}]}>
           <Text style={styles.errorMessage}>
@@ -134,13 +135,13 @@ return (
           {ingredient.name}: {ingredient.amount} {ingredient.unit}
         </Text>
         ))}
-        
+
         </View>
         {/* Instructions Container */}
-        <View style={[styles.instContainer]}>
+        <View style={[styles.instContainer, { paddingBottom: 20 }]}>
           <Text style={[styles.title4, {marginLeft: 15, marginTop: 15}]}>Instruction</Text>
-          <View style={[styles.lineStyle, {width: '92%', alignSelf: 'center'}]} />
-          <HTML 
+          <View style={[styles.lineStyle, {width: '92%', alignSelf: 'center'}]}/>
+          <HTML
             source={{ html: recipeDetails.instructions }} 
             contentWidth={width}
             baseStyle={styles.htmlBaseFontStyle2}
@@ -152,8 +153,8 @@ return (
       <View style={styles.loadingContainer}>
         <LottieView 
           source={require('../assets/pan2.json')} 
-          autoPlay 
-          loop 
+          autoPlay
+          loop
           speed={3}
           style={{ width: 150, height: 150}}
         />
