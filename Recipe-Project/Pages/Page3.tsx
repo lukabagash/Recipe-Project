@@ -25,15 +25,21 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
   const [recipes, setRecipes] = useState<any[]>([]);
   const [isLimitExceeded, setIsLimitExceeded] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(true);
+  const apiKeys = ['478ac7d46da94ebf86bf83a8d1f4f239', '383052fef40e45ab8479cb6f462a8077', '6f3f815c35c74863bd4bae9ab0e78cbc'];
 
 
   useEffect(() => {
-      const fetchRecipes = async () => {
+      const fetchRecipes = async (apiKeyIndex = 0) => {
+        if (apiKeyIndex >= apiKeys.length) {
+          // All keys have been tried and failed
+          setIsLimitExceeded(true);
+          return;
+        }
           try {
               const response = await axios.get('https://api.spoonacular.com/recipes/findByIngredients', {
                   params: {
                       ingredients: selectedItems.join(','),
-                      apiKey: '383052fef40e45ab8479cb6f462a8077'
+                      apiKey: apiKeys[apiKeyIndex]
                   }
               });
               setRecipes(response.data);
@@ -44,8 +50,9 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
               if (axiosError.response) {
                 console.log("API response status:", axiosError.response.status)
                 if (axiosError.response && axiosError.response.status === 402) {
-                  setIsLimitExceeded(true);
+                  fetchRecipes(apiKeyIndex + 1);
                 }
+                else{ console.error("API call failed:", error);}
               }
             }finally {
               setIsLoading(false); // Set loading to false regardless of success or failure
