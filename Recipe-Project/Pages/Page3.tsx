@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import LottieViewProps from "lottie-react-native"
 import Lottie from 'lottie-react-native'
-import Animated, { Easing, useSharedValue, withTiming } from 'react-native-reanimated'
 import axios, { AxiosError } from 'axios';
 import { DataContext } from '../DataProvider/DataProvider';
 import { View, Text, Image, FlatList, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
@@ -116,7 +115,6 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                 </TouchableOpacity>
     );
   };
-  const AnimatedLottieView = Animated.createAnimatedComponent(Lottie)
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>  
 {isLoading ? (
