@@ -1,7 +1,4 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import LottieViewProps from "lottie-react-native"
-import Lottie from 'lottie-react-native'
-import Animated, { Easing, useSharedValue, withTiming } from 'react-native-reanimated'
 import axios, { AxiosError } from 'axios';
 import { DataContext } from '../DataProvider/DataProvider';
 import { View, Text, Image, FlatList, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
@@ -19,7 +16,6 @@ interface Page3Props {
 const Page3: React.FC<Page3Props> = ({navigation}) => {
   const navigationn = useNavigation();
   const context = useContext(DataContext);
-  const animation = useRef(null);
   if (!context) {
       throw new Error("Page3 must be used within a DataProvider");
   }
@@ -58,15 +54,14 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
 
       fetchRecipes();
   }, [selectedItems]);
-  const [isScrollEnabled, setIsScrollEnabled] = useState(true);
+
+  
 
   const RecipeItem = ({ recipe, onNavigate }: { recipe: any, onNavigate: (route: string, params?: any) => void }) => {
     return (
     <TouchableOpacity 
                   style={styles.box} 
                   onPress={() => navigation.navigate('Page4', { recipeId: recipe.id })}
-                  onPressIn={() => setIsScrollEnabled(false)}
-                  onPressOut={() => setIsScrollEnabled(true)}
                 >
                   <View style={{ flexDirection: 'row', padding: 3}}>
                   <View style={{ flexDirection: 'row' }}>
@@ -116,18 +111,18 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                 </TouchableOpacity>
     );
   };
-  const AnimatedLottieView = Animated.createAnimatedComponent(Lottie)
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>  
 {isLoading ? (
       <View style={styles.loadingContainer}>
-        {/* <LottieView 
-          source={require('../assets/pan2.json')} 
+        <LottieView 
+          source={require('../assets/recipe_book.json')} 
           autoPlay 
           loop 
-          speed={3}
+          speed={2}
           style={{ width: 150, height: 150}}
-        /> */}
+        />
         <Text style={[styles.descriptionTextP1, {marginRight: '12%'}]}>Loading...</Text>
       </View>
     ) : (

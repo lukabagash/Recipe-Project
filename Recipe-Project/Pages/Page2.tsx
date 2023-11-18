@@ -8,6 +8,7 @@ import { DataContext } from '../DataProvider/DataProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+
 interface Page2Props {
   navigation: StackNavigationProp<any>;
 }

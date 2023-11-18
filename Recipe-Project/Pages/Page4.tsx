@@ -7,6 +7,7 @@ import { useWindowDimensions } from 'react-native';
 import HTML from 'react-native-render-html';
 import { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 import { HeaderBackButton } from '@react-navigation/elements';
 
 // Types and Interfaces
@@ -149,13 +150,13 @@ return (
       </ScrollView>
     ) : (
       <View style={styles.loadingContainer}>
-        {/* <LottieView 
-          source={require('../assets/pan2.json')} 
+        <LottieView 
+          source={require('../assets/recipe_book.json')} 
           autoPlay 
           loop 
-          speed={3}
+          speed={2}
           style={{ width: 150, height: 150}}
-        /> */}
+        />
         <Text style={[styles.descriptionTextP1, {marginRight: '12%'}]}>Loading...</Text>
       </View>
     )}
