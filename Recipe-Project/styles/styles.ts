@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     descriptionTextP1: {
         fontSize: 16,
         textAlign: 'center',
-        marginBottom: 18,
+        marginBottom: '7%',
         marginLeft: '15%',  // 15% space from the left
         marginRight: '15%', // 15% space from the right
         color: '#691914',   // Slightly darker shade for the description
@@ -350,9 +350,10 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         width: '100%',
         marginBottom: 5,  // Adjust for spacing between the label and the container
-        marginLeft: 16,    // Optional: for some left spacing
+        marginLeft: 20,    // Optional: for some left spacing
         marginTop: 15,
         height: 50
+
     },
     selectedItemsContainer: {
         flexDirection: 'row',

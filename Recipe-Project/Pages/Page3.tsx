@@ -6,7 +6,7 @@ import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import LottieView from 'lottie-react-native';
 
 interface Page3Props {
@@ -136,9 +136,12 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
     ) : (
       <>
         <View style={[styles.header, {backgroundColor: '#FFFAEE', paddingLeft: 8}]}>
-        <TouchableOpacity onPress={() => navigationn.goBack()} style={{ paddingTop: 0, paddingLeft: 10 }}>
-              <Icon name="arrow-back" size={30} color="#84251E" />
-              </TouchableOpacity>
+        <TouchableOpacity 
+        style={[styles.backButton, {paddingLeft: 6}]} 
+        onPress={() => navigationn.goBack()}
+      >
+        <Icon name="left" size={30} color="#84251E" />
+      </TouchableOpacity>
             <Text style={styles.headerText}>{recipes.length} Recipes</Text>
           </View>
         {
