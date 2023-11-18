@@ -143,7 +143,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFAEE',
         borderRadius: 10,
         borderColor: '#FFFDF7', // Set the border color
-        elevation: 5, // This adds shadow on Android
+        //elevation: 5, // This adds shadow on Android
     },
 
     likes: {

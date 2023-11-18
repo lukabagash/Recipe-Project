@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, SafeAreaView, LogBox, ActivityIndicator } from 'react-native';
+import { View, Text, Image, ScrollView, SafeAreaView, LogBox } from 'react-native';
 import axios from 'axios';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { styles } from '../styles/styles';
@@ -8,7 +8,6 @@ import HTML from 'react-native-render-html';
 import { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
-import LottieView from 'lottie-react-native';
 
 // Types and Interfaces
 interface Page4Props {}
@@ -151,13 +150,13 @@ return (
       </ScrollView>
     ) : (
       <View style={styles.loadingContainer}>
-        <LottieView 
+        {/* <LottieView 
           source={require('../assets/pan2.json')} 
           autoPlay
           loop
           speed={3}
           style={{ width: 150, height: 150}}
-        />
+        /> */}
         <Text style={[styles.descriptionTextP1, {marginRight: '12%'}]}>Loading...</Text>
       </View>
     )}

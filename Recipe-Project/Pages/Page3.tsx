@@ -1,4 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
+import LottieViewProps from "lottie-react-native"
+import Lottie from 'lottie-react-native'
+import Animated, { Easing, useSharedValue, withTiming } from 'react-native-reanimated'
 import axios, { AxiosError } from 'axios';
 import { DataContext } from '../DataProvider/DataProvider';
 import { View, Text, Image, FlatList, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
@@ -16,6 +19,7 @@ interface Page3Props {
 const Page3: React.FC<Page3Props> = ({navigation}) => {
   const navigationn = useNavigation();
   const context = useContext(DataContext);
+  const animation = useRef(null);
   if (!context) {
       throw new Error("Page3 must be used within a DataProvider");
   }
@@ -87,8 +91,8 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                         </Text>
               
                         <View style={{
-                          //borderWidth: 1, // Make the border more subtle
-                          //borderColor: '#8B3E3A', // Keep a neutral border color
+                          borderWidth: 1, // Make the border more subtle
+                          borderColor: '#8B3E3A', // Keep a neutral border color
                           borderRadius: 5, // Smaller rounded corners
                           paddingHorizontal: 5, // Minimal horizontal padding
                           paddingVertical: 2, // Minimal vertical padding
@@ -112,18 +116,18 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
                 </TouchableOpacity>
     );
   };
-  
+  const AnimatedLottieView = Animated.createAnimatedComponent(Lottie)
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFAEE', }}>  
 {isLoading ? (
       <View style={styles.loadingContainer}>
-        <LottieView 
+        {/* <LottieView 
           source={require('../assets/pan2.json')} 
           autoPlay 
           loop 
           speed={3}
           style={{ width: 150, height: 150}}
-        />
+        /> */}
         <Text style={[styles.descriptionTextP1, {marginRight: '12%'}]}>Loading...</Text>
       </View>
     ) : (
@@ -132,7 +136,7 @@ const Page3: React.FC<Page3Props> = ({navigation}) => {
             <HeaderBackButton 
               style={styles.backButton} 
               onPress={() => navigationn.goBack()} 
-              labelVisible={false} 
+              // labelVisible={false} 
               tintColor="#691914"
             />
             <Text style={styles.headerText}>{recipes.length} Recipes</Text>
