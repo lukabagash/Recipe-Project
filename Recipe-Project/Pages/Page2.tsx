@@ -9,8 +9,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { BoxShadow } from 'react-native-shadow';
 import { ScreenWidth } from 'react-native-elements/dist/helpers';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
 
 
 interface Page2Props {
