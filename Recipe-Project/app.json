@@ -1,5 +1,6 @@
 {
   "expo": {
+    
     "name": "Pantry Chef",
     "slug": "Pantry-Chef",
     "version": "1.0.0",
@@ -10,21 +11,28 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
+    },  
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wilcr.pantrychef"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.wilcr.pantrychef"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "77395756-4f62-4ac9-9c69-563a26ae4eb5"
+      }
     }
   }
 }

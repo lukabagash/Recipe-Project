@@ -3,7 +3,6 @@ import { View, Platform, FlatList, TextInput, Text, TouchableOpacity, Keyboard, 
 import axios, { AxiosError } from 'axios';
 import { styles, } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
-import { HeaderBackButton } from '@react-navigation/elements';
 import { DataContext } from '../DataProvider/DataProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/AntDesign';

@@ -1,9 +1,0 @@
-<activity
-    android:name=".MainActivity"
-    android:label="@string/Pantry Shef"
-    android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-    android:windowSoftInputMode="stateUnchanged"  // Add or modify this line
-    android:launchMode="singleTask">
-    <!-- ... other configurations ... -->
-</activity>
-

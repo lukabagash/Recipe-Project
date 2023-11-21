@@ -4,7 +4,6 @@ import { DataContext } from '../DataProvider/DataProvider';
 import { View, Text, Image, FlatList, SafeAreaView, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
-import { HeaderBackButton } from '@react-navigation/elements';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/AntDesign';
 import LottieView from 'lottie-react-native';

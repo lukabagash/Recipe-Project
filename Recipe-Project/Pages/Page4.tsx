@@ -8,7 +8,6 @@ import HTML from 'react-native-render-html';
 import { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import { HeaderBackButton } from '@react-navigation/elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 
